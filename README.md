@@ -1,33 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Sandton Preparatory School
 
-## Getting Started
+This project was built with Next.js
+, bootstrapped using create-next-app
+.
 
-First, run the development server:
+🚀 Getting Started
 
-```bash
+Run the development server:
+
 pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then, open http://localhost:3000
+ in your browser to see it live.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To make changes, edit app/page.tsx. The page will auto-refresh as you update the file.
 
-## Learn More
+🎨 Fonts & Styles
 
-To learn more about Next.js, take a look at the following resources:
+Integrated next/font to automatically optimize and load Geist
+, Vercel’s new font family.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Added Sandy Kids font manually (since it’s not available on Google Fonts).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Included Quicksand in the font folder.
 
-## Deploy on Vercel
+Updated globals.css inside the app folder for consistent styling.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📚 Learn More
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Sandton-Preparatory-School
-# Sandton-Preparatory-Schoo
-# Sandton-Preparatory-Schoo
+Next.js Documentation
+ — full guide to features and APIs.
+
+Interactive Next.js Tutorial
+ — hands-on practice.
+
+Next.js GitHub Repository
+ — explore, contribute, or drop feedback.
+
+☁️ Deployment
+
+The easiest way to deploy is with Vercel
+, the team behind Next.js.
+
+Check the deployment docs
+ for more details.

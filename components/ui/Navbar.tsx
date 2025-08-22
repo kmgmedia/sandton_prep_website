@@ -16,7 +16,7 @@
         document.addEventListener("keydown", handleEsc);
         return () => document.removeEventListener("keydown", handleEsc);
     }, []);
-    
+
 
     const navItems = ["about", "classes", "blog", "events", "contact"];
 
@@ -44,7 +44,7 @@
             </div>
 
             {/* Middle - Links (Desktop only) */}
-            <div className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-10 text-base font-medium text-gray-700">
+            <div className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-10 text-base font-semibold text-gray-700">
             {navItems.map((item) => (
                 <Link
                 key={item}
