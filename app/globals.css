@@ -6,9 +6,13 @@
 .font-quicksand {
   font-family: var(--font-quicksand), sans-serif;
 }
+/* globals.css */
 .font-sandyKids {
   font-family: var(--font-sandyKids), cursive;
+  font-weight: 700; /* fallback */
+  -webkit-text-stroke: 0.5px #000; /* outline to look thicker */
 }
+
 
 
 

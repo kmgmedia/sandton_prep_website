@@ -17,33 +17,26 @@
         return () => document.removeEventListener("keydown", handleEsc);
     }, []);
 
-
     const navItems = ["about", "classes", "blog", "events", "contact"];
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-[#FFFDEB] shadow-sm">
-        {/* Inner container */}
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-4 py-3 sm:px-6 sm:py-4 md:px-8">
             {/* Left - Logo + Name */}
-            <div className="flex items-center gap-3 sm:gap-4 min-w-[160px]">
+            <Link
+            href="/"
+            className="flex items-center gap-3 sm:gap-4 min-w-[160px]"
+            >
             <Image
-                src="/logo.png"
+                src="/assets/school-logo.png"
                 alt="Sandton"
-                width={48}
-                height={48}
-                className="rounded-full"
+                width={129}
+                height={32}
+                className="w-auto"
             />
-            <div className="leading-tight">
-                <p className="font-semibold text-lg sm:text-xl text-gray-800">
-                Sandton
-                </p>
-                <p className="text-[13px] sm:text-[15px] text-gray-600 -mt-1">
-                Prep. School
-                </p>
-            </div>
-            </div>
+            </Link>
 
-            {/* Middle - Links (Desktop only) */}
+            {/* Middle - Links (Desktop) */}
             <div className="hidden lg:flex flex-1 justify-center items-center gap-6 xl:gap-10 text-base font-semibold text-gray-700">
             {navItems.map((item) => (
                 <Link
@@ -56,7 +49,7 @@
             ))}
             </div>
 
-            {/* Right - Phone + CTA (Desktop only) */}
+            {/* Right - Phone + CTA (Desktop) */}
             <div className="hidden lg:flex items-center gap-3 xl:gap-5">
             <a
                 href="tel:+2349159116203"
@@ -76,7 +69,7 @@
             {/* Mobile Menu Button */}
             <button
             className="ml-auto rounded-md p-2 text-gray-700 transition hover:bg-gray-200 lg:hidden"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             >

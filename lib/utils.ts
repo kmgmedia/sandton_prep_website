@@ -1,18 +1,14 @@
 /**
  * Check if a public asset exists
- * @param path - path relative to the public folder, e.g. "/fonts/SandyKids.ttf"
- * @returns full URL to the asset (if exists), otherwise throws error
  */
 export function getPublicAsset(path: string): string {
   if (!path.startsWith("/")) {
     throw new Error(`❌ Asset path must start with '/'. Got: ${path}`);
   }
 
-  // Construct the URL
   const assetUrl =
-    typeof window !== "undefined" ? `${window.location.origin}${path}` : path; // SSR safe
+    typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
 
-  // During dev, attempt to prefetch to check if the asset exists
   if (typeof window !== "undefined") {
     fetch(path, { method: "HEAD" })
       .then((res) => {
@@ -27,3 +23,12 @@ export function getPublicAsset(path: string): string {
 
   return assetUrl;
 }
+
+// 👇 Add this
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
