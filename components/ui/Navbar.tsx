@@ -30,7 +30,7 @@
             <Image
                 src="/assets/school-logo.png"
                 alt="Sandton"
-                width={129}
+                width={128}
                 height={32}
                 className="w-auto"
             />
