@@ -3,12 +3,7 @@
 
     import Image from "next/image";
     import { ArrowRight } from "lucide-react";
-    import { Quicksand } from "next/font/google";
-
-    const quicksand = Quicksand({
-    subsets: ["latin"],
-    variable: "--font-quicksand",
-    });
+  
 
     export default function Home() {
     return (
