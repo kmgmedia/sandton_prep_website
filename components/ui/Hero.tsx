@@ -36,14 +36,14 @@
           </h1>
 
           {/* Sub text */}
-          <p className="mt-6 max-w-2xl text-gray-600 text-bold md:text-lg font-quicksand">
+          <p className="mt-6 max-w-2xl text-gray-600 text-bold md:text-lg font-['Quicksand']">
             Welcome to Sandton Preparatory School, where we provide exceptional
             early childhood education for children aged 6 months to 10 years in
             a nurturing, creative environment.
           </p>
 
           {/* Buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href="#book"
               className="inline-flex items-center justify-center px-6 py-3 bg-[#FFD900] hover:bg-[#FFD43B] text-gray-900 font-medium rounded-md shadow-sm transition font-quicksand"
@@ -78,6 +78,41 @@
             <div className="w-96 h-96 left-[1277.60px] top-[121.11px] absolute bg-slate-50 rounded-full"></div>
             <div className="w-80 h-80 left-[306.58px] top-[157.13px] absolute bg-slate-50 rounded-full"></div>
             <div className="w-80 h-80 left-[493.92px] top-[160.03px] absolute origin-top-left rotate-[-0.51deg] bg-slate-50  rounded-full"></div>
+          </div>
+
+
+          {/* discriptions Session */}
+          <div className="relative w-[1440px] px-28 py-14 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+            <div className="inline-flex justify-center items-center gap-32">
+              <div className="w-[602px] inline-flex flex-col justify-start items-start gap-12">
+                <div className="self-stretch justify-start text-gray-900 text-lg font-medium font-['Quicksand'] leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur. Mauris donec quam
+                  maecenas arcu adipiscing integer vulputate interdum
+                  pellentesque. Vitae interdum sed id convallis nisi lorem elit.
+                  Pellentesque imperdiet cras vulputate arcu sit pharetra auctor
+                  pellentesque. Nisl amet convallis risus condimentum.
+                </div>
+                <div
+                  data-badge="false"
+                  data-icon="true"
+                  data-size="56"
+                  data-state="Focused"
+                  data-type="Tetriary"
+                  className="px-6 py-4 rounded-[10px] outline outline-2 outline-offset-[-2px] outline-gray-900 inline-flex justify-center items-center gap-2.5 overflow-hidden"
+                >
+                  <div className="flex justify-start items-center gap-2">
+                    <div className="justify-start text-gray-900 text-lg font-semibold font-['Quicksand']">
+                      Learn More
+                    </div>
+                    <div className="w-5 h-5 relative overflow-hidden">
+                      <div className="w-2.5 h-0 left-[4.75px] top-[10px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-gray-900"></div>
+                      <div className="w-1.5 h-2.5 left-[10px] top-[4.75px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-gray-900"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="w-[487.91px] h-96 bg-zinc-300 rounded-[30px]"></div>
+            </div>
           </div>
         </div>
       </main>
