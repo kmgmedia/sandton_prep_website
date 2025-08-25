@@ -3,6 +3,10 @@
 
     import Image from "next/image";
     import { ArrowRight } from "lucide-react";
+    import Button from "./button";
+    import Discovercard from "./Discovercard";
+    import Comeover from "./Comeover";
+    
   
 
     export default function Home() {
@@ -26,7 +30,7 @@
 
         <div className="container mx-auto flex flex-col items-center text-center px-4">
           {/* Heading */}
-          <h1 className="font-sandyKids text-4xl md:text-8xl font-bold text-gray-900 tracking-wider">
+          <h1 className="font-sandyKids text-4xl md:text-8xl font-bold text-gray-900 tracking-wider" style={{ WebkitTextStroke: 0 }}>
             Nurturing{" "}
             <span className="bg-[#FFD900] px-2 text-gray-900">
               Bright Minds,
@@ -80,39 +84,41 @@
             <div className="w-80 h-80 left-[493.92px] top-[160.03px] absolute origin-top-left rotate-[-0.51deg] bg-slate-50  rounded-full"></div>
           </div>
 
-
-          {/* discriptions Session */}
-          <div className="relative w-[1440px] px-28 py-14 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-            <div className="inline-flex justify-center items-center gap-32">
-              <div className="w-[602px] inline-flex flex-col justify-start items-start gap-12">
-                <div className="self-stretch justify-start text-gray-900 text-lg font-medium font-['Quicksand'] leading-relaxed">
+          {/* descriptions Session */}
+          <div className="relative w-full max-w-[1440px] px-6 md:px-12 lg:px-28 py-8 flex flex-col gap-10 overflow-hidden">
+            <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-12 lg:gap-32">
+              {/* Text Section */}
+              <div className="w-full max-w-[602px] flex flex-col gap-12 text-center lg:text-left">
+                <div className="text-gray-900 text-lg font-medium font-quicksand leading-relaxed">
                   Lorem ipsum dolor sit amet consectetur. Mauris donec quam
                   maecenas arcu adipiscing integer vulputate interdum
                   pellentesque. Vitae interdum sed id convallis nisi lorem elit.
                   Pellentesque imperdiet cras vulputate arcu sit pharetra auctor
                   pellentesque. Nisl amet convallis risus condimentum.
                 </div>
-                <div
-                  data-badge="false"
-                  data-icon="true"
-                  data-size="56"
-                  data-state="Focused"
-                  data-type="Tetriary"
-                  className="px-6 py-4 rounded-[10px] outline outline-2 outline-offset-[-2px] outline-gray-900 inline-flex justify-center items-center gap-2.5 overflow-hidden"
-                >
-                  <div className="flex justify-start items-center gap-2">
-                    <div className="justify-start text-gray-900 text-lg font-semibold font-['Quicksand']">
-                      Learn More
-                    </div>
-                    <div className="w-5 h-5 relative overflow-hidden">
-                      <div className="w-2.5 h-0 left-[4.75px] top-[10px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-gray-900"></div>
-                      <div className="w-1.5 h-2.5 left-[10px] top-[4.75px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-gray-900"></div>
-                    </div>
-                  </div>
+
+                {/* Button - centered under text */}
+                <div className="flex justify-center lg:justify-start">
+                  <Button
+                    label="Learn More"
+                    onClick={() => alert("Learn More pressed!")}
+                    showArrow
+                  />
                 </div>
               </div>
-              <div className="w-[487.91px] h-96 bg-zinc-300 rounded-[30px]"></div>
+
+              {/* Image / Graphic Section */}
+              <div className="w-full lg:w-[600px] h-[200px] md:h-[300px] bg-zinc-300 rounded-2xl"></div>
             </div>
+          </div>
+
+          {/* Discovered Classes Section */}
+          <div className="flex justify-center lg:justify-start">
+            <Discovercard />
+          </div>
+          {/* Come Over Classes Section */}
+          <div className="flex justify-center lg:justify-start">
+            <Comeover />
           </div>
         </div>
       </main>
