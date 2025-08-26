@@ -19,7 +19,7 @@ export default function Capturing() {
           className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-4 tracking-wider"
           style={{ WebkitTextStroke: 0 }}
         >
-          Capturing moment <br /> of Joy and Learning
+          Capturing moment of <br /> Joy and Learning
         </h2>
       </div>
 

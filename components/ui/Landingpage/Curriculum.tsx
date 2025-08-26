@@ -53,7 +53,7 @@ const Curriculum = () => {
       {/* Title Section */}
       <div className="flex flex-col items-center gap-4 max-w-5xl text-center">
         <h2
-          className="text-gray-900 text-4xl sm:text-5xl md:text-6xl font-normal font-['Sandy_Kids'] tracking-widest"
+          className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-4 tracking-wider"
           style={{ WebkitTextStroke: 0 }}
         >
           Curriculum
