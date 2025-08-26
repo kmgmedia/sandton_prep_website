@@ -14,11 +14,13 @@ export default function Capturing() {
   return (
     <div className="w-full flex flex-col justify-start items-center gap-10 mt-16 px-4">
       {/* Title */}
-      <div
-        className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-4 tracking-wider"
-        style={{ WebkitTextStroke: 0 }}
-      >
-        Capturing moment of <br /> Joy and Learning
+      <div className="flex flex-col text-center max-w-2xl mb-12">
+        <h2
+          className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-4 tracking-wider"
+          style={{ WebkitTextStroke: 0 }}
+        >
+          Capturing moment of <br /> Joy and Learning
+        </h2>
       </div>
 
       {/* Shapes & Clouds */}
