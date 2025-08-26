@@ -51,7 +51,7 @@ export default function ClassesSection() {
           <span className="font-black">professional classes</span>
         </h2>
         <p className="text-gray-600 text-lg">
-          Age-appropriate programs designed to nurture every <br /> child’s unique
+          Age-appropriate programs designed to nurture every child&apos;s unique
           potential
         </p>
       </div>
