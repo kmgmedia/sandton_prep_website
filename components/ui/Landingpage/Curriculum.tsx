@@ -52,7 +52,10 @@ const Curriculum = () => {
     <div className="flex flex-col items-center gap-16 px-4 py-12">
       {/* Title Section */}
       <div className="flex flex-col items-center gap-4 max-w-5xl text-center">
-        <h2 className="text-gray-900 text-4xl sm:text-5xl md:text-6xl font-normal font-['Sandy_Kids'] tracking-widest">
+        <h2
+          className="text-gray-900 text-4xl sm:text-5xl md:text-6xl font-normal font-['Sandy_Kids'] tracking-widest"
+          style={{ WebkitTextStroke: 0 }}
+        >
           Curriculum
         </h2>
         <p className="text-slate-500 text-base sm:text-lg md:text-xl font-medium font-['Quicksand'] leading-relaxed">
