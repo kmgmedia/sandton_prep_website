@@ -14,7 +14,10 @@ export default function Capturing() {
   return (
     <div className="w-full flex flex-col justify-start items-center gap-10 mt-16 px-4">
       {/* Title */}
-      <div className="text-center text-gray-900 text-3xl sm:text-4xl md:text-6xl font-normal font-['Sandy_Kids'] tracking-wide max-w-4xl">
+      <div
+        className="text-center text-gray-900 text-3xl sm:text-4xl md:text-6xl font-normal font-['Sandy_Kids'] tracking-wide max-w-4xl"
+        style={{ WebkitTextStroke: 0 }}
+      >
         Capturing moment of <br /> Joy and Learning
       </div>
 
