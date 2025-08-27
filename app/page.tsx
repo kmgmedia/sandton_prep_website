@@ -1,4 +1,4 @@
-import Hero from "../components/ui/Landingpage/Hero";
+// import Hero from "../components/ui/Landingpage/Hero";
 import About from "../components/ui/Aboutpage/About";
 // import TechStacks from "../components/TechStacks";
 // import Projects from "../components/Projects";

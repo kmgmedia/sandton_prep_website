@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import SubFooter from "../Aboutpage/Subfooter";
 
 const Curriculum = () => {
   const curriculumCards = [

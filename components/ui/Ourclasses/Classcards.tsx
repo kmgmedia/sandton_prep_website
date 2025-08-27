@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Clock, Star, Users, ArrowRight, } from "lucide-react";
+import { Clock, Star, } from "lucide-react";
 
 
 const ClassCard = ({
