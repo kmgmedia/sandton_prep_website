@@ -1,5 +1,5 @@
 import Hero from "../components/ui/Landingpage/Hero";
-// import About from "../components/About";
+import About from "../components/ui/Aboutpage/About";
 // import TechStacks from "../components/TechStacks";
 // import Projects from "../components/Projects";
 // import Testimonials from "../components/Testimonials";
@@ -8,9 +8,9 @@ import Hero from "../components/ui/Landingpage/Hero";
 export default function Home() {
   return (
     <>
-      <Hero />
-      {/* <About />
-      <TechStacks />
+      {/* <Hero /> */}
+      <About />
+      {/* <TechStacks />
       <Projects />
       <Testimonials />
       <Contact /> */}
