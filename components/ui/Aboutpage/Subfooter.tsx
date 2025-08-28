@@ -9,10 +9,12 @@ const SubFooter = ({
   secondaryBtnText = "Contact Us",
   containerClass = "bg-yellow-300",
   maxWidth = "max-w-4xl",
-  paddingY = "py-12",
+  paddingY = "py-24",
 }) => {
   return (
-    <div className={`w-full ${containerClass} ${paddingY} mt-12 flex justify-center`}>
+    <div
+      className={`w-full ${containerClass} ${paddingY} mt-12 flex justify-center`}
+    >
       <div
         className={`${maxWidth} w-full px-6 flex flex-col items-center text-center`}
       >
@@ -29,7 +31,7 @@ const SubFooter = ({
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
-          <button className="px-6 py-3 rounded-lg border-2 border-blue-950 text-blue-950 font-semibold text-lg font-['Quicksand'] hover:bg-blue-50 transition">
+          <button className="px-6 py-3 rounded-lg border-2 border-[var(--secondary-300)] text-blue-950 font-semibold text-lg font-['Quicksand'] hover:bg-blue-50 transition">
             {primaryBtnText}
           </button>
           <button className="px-6 py-3 rounded-lg bg-neutral-100 shadow text-gray-900 font-semibold text-lg font-['Quicksand'] hover:bg-neutral-200 transition">
