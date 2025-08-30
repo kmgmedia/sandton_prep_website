@@ -2,15 +2,31 @@
 
 import React from "react";
 
+type SubFooterProps = {
+  heading?: string;
+  subheading?: React.ReactNode; // 👈 allow JSX instead of only string
+  primaryBtnText?: string;
+  secondaryBtnText?: string;
+  containerClass?: string;
+  maxWidth?: string;
+  paddingY?: string;
+};
+
 const SubFooter = ({
   heading = "Ready to Join Our Community?",
-  subheading = "Experience the difference of quality early childhood education.<br />Schedule a visit to see our approach in action.",
+  subheading = (
+    <>
+      Experience the difference of quality early childhood education.
+      <br className="hidden sm:block" />
+      Schedule a visit to see our approach in action.
+    </>
+  ),
   primaryBtnText = "Book A Visit",
   secondaryBtnText = "Contact Us",
   containerClass = "bg-yellow-300",
   maxWidth = "max-w-4xl",
   paddingY = "py-24",
-}) => {
+}: SubFooterProps) => {
   return (
     <div
       className={`w-full ${containerClass} ${paddingY} mt-12 flex justify-center`}
@@ -24,10 +40,9 @@ const SubFooter = ({
         </h2>
 
         {/* Subheading */}
-        <p
-          className="text-gray-900 text-base sm:text-lg font-medium font-['Quicksand'] leading-relaxed mt-2"
-          dangerouslySetInnerHTML={{ __html: subheading }}
-        />
+        <p className="text-gray-900 text-base sm:text-lg font-medium font-['Quicksand'] leading-relaxed mt-2">
+          {subheading}
+        </p>
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-4">

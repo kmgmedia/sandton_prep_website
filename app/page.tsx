@@ -1,6 +1,9 @@
 // import Hero from "../components/ui/Landingpage/Hero";
 // import About from "../components/ui/Aboutpage/About";
 import Classpage from "../components/ui/Ourclasses/Classpage"
+import Blogpage from "../components/ui/Schoolblog/Blogpage";
+import Eventpage from "../components/ui/Schoolevents/Eventpage";
+
 
 
 
@@ -12,7 +15,9 @@ export default function Home() {
     <>
       {/* <Hero /> */}
       {/* <About /> */}
-      <Classpage />
+      {/* <Classpage /> */}
+      {/* <Blogpage /> */}
+      <Eventpage />
     </>
   );
 }

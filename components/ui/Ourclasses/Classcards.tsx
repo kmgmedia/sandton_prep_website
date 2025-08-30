@@ -22,6 +22,8 @@ const ClassCard = ({
   secondaryBtnText = "Visit First",
   containerClass = "bg-amber-50/60",
 }) => {
+
+  
   return (
     <div
       className={`w-full max-w-[453px] p-4 ${containerClass} rounded-xl outline outline-[1.6px] outline-zinc-300 flex justify-center`}
