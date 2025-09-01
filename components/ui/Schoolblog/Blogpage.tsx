@@ -152,7 +152,7 @@ const Blogpage = () => {
       <section className="flex justify-center items-center w-full py-16 pt-8">
         <div className="w-full max-w-5xl flex flex-col justify-center items-center gap-12">
           {/* Stay Updated Section */}
-          <div className="w-full px-8 py-14 bg-yellow-300 flex flex-col justify-center items-center gap-8 rounded-lg">
+          <div className="w-full px-8 py-14 bg-yellow-300 flex flex-col justify-center items-center gap-8">
             <div className="text-center">
               <h2 className="text-4xl font-bold font-['Quicksand'] text-black leading-[56px]">
                 Stay Updated
@@ -176,7 +176,7 @@ const Blogpage = () => {
           </div>
 
           {/* Explore More Section */}
-          <div className="w-full p-14 bg-gray-200/60 flex flex-col justify-center items-center gap-6 rounded-lg">
+          <div className="w-full p-14 bg-gray-200/60 flex flex-col justify-center items-center gap-6">
             <h3 className="text-4xl font-bold text-gray-900 text-center font-['Quicksand']">
               Explore More
             </h3>
