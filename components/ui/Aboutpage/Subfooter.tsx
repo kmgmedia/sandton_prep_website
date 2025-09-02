@@ -4,7 +4,7 @@ import React from "react";
 
 type SubFooterProps = {
   heading?: string;
-  subheading?: React.ReactNode; // 👈 allow JSX instead of only string
+  subheading?: React.ReactNode; //  allow JSX instead of only string
   primaryBtnText?: string;
   secondaryBtnText?: string;
   containerClass?: string;
@@ -24,7 +24,7 @@ const SubFooter = ({
   primaryBtnText = "Book A Visit",
   secondaryBtnText = "Contact Us",
   containerClass = "bg-yellow-300",
-  maxWidth = "max-w-4xl",
+  maxWidth = "max-w-2xl",
   paddingY = "py-24",
 }: SubFooterProps) => {
   return (
