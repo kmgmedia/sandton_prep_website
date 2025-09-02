@@ -1,14 +1,19 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React from "react";
 import SelectionBtn from "../Schoolblog/selectionbtn";
 import EventCard from "./Eventcards";
 import Footer from "../Landingpage/Footer";
 import SubFooter from "../Aboutpage/Subfooter";
 
+
+
 const EventPage = () => {
+  const router = useRouter();
+
   const handleClick = () => {
-    console.log("Read Article clicked!");
+    router.push("/contact");
   };
 
   return (
@@ -73,7 +78,7 @@ const EventPage = () => {
           {/* Footer Info */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-4">
             {/* Author + Date */}
-            <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500 font-normal font-['Inter']">
+            <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500 font-normal font-['Quicksand']">
               <span>Sarah Johnson</span>
               <span>March 15, 2024</span>
               <span>5 min read</span>
@@ -103,7 +108,7 @@ const EventPage = () => {
               Upcoming Events list
             </div>
             <div className="text-slate-500 text-sm sm:text-base md:text-lg font-medium font-['Quicksand'] leading-relaxed">
-              Don't miss these exciting upcoming activities
+              Don&apos;t miss these exciting upcoming activities
             </div>
           </div>
         </div>
@@ -114,7 +119,7 @@ const EventPage = () => {
             <EventCard
               categoryLabel="Academic"
               title="Parent-Teacher Conference Week"
-              description="One-on-one meetings to discuss your child's progress and development."
+              description="One-on-one meetings to discuss your child&apos;s progress and development."
               classroomInfo="Individual Classrooms"
               ageInfo="All Ages"
               dateInfo="April 22-26, 2025"
@@ -139,7 +144,7 @@ const EventPage = () => {
           <div className="w-full max-w-[480px]">
             <EventCard
               categoryLabel="Celebration"
-              title="Mother's Day Celebration"
+              title="Mother&apos;s Day Celebration"
               description="Special performance and activities to celebrate the wonderful mothers in our community."
               classroomInfo="School Garden & Playground"
               ageInfo="All Ages"
@@ -213,6 +218,7 @@ const EventPage = () => {
             containerClass="bg-[var(--secondary-500)]"
             maxWidth="max-w-5xl"
             paddingY="py-24"
+            onSecondaryClick={handleClick}
           />
 
           {/* Explore More Section */}

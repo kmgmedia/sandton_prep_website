@@ -1,15 +1,18 @@
+// SubFooter.tsx
 "use client";
 
 import React from "react";
 
 type SubFooterProps = {
   heading?: string;
-  subheading?: React.ReactNode; //  allow JSX instead of only string
+  subheading?: React.ReactNode;
   primaryBtnText?: string;
   secondaryBtnText?: string;
   containerClass?: string;
   maxWidth?: string;
   paddingY?: string;
+  onPrimaryClick?: () => void;    // <-- add this
+  onSecondaryClick?: () => void;  // <-- add this
 };
 
 const SubFooter = ({
@@ -26,6 +29,8 @@ const SubFooter = ({
   containerClass = "bg-yellow-300",
   maxWidth = "max-w-2xl",
   paddingY = "py-24",
+  onPrimaryClick,
+  onSecondaryClick,
 }: SubFooterProps) => {
   return (
     <div
@@ -46,10 +51,16 @@ const SubFooter = ({
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
-          <button className="px-6 py-3 rounded-lg border-2 border-[var(--secondary-300)] text-blue-950 font-semibold text-lg font-['Quicksand'] hover:bg-blue-50 transition">
+          <button
+            onClick={onPrimaryClick}
+            className="px-6 py-3 rounded-lg border-2 border-[var(--secondary-300)] text-blue-950 font-semibold text-lg font-['Quicksand'] hover:bg-blue-50 transition"
+          >
             {primaryBtnText}
           </button>
-          <button className="px-6 py-3 rounded-lg bg-neutral-100 shadow text-gray-900 font-semibold text-lg font-['Quicksand'] hover:bg-neutral-200 transition">
+          <button
+            onClick={onSecondaryClick}
+            className="px-6 py-3 rounded-lg bg-neutral-100 shadow text-gray-900 font-semibold text-lg font-['Quicksand'] hover:bg-neutral-200 transition"
+          >
             {secondaryBtnText}
           </button>
         </div>

@@ -6,8 +6,15 @@ import Team from "./Team";
 import Ourjourney from "./Ourjourney";
 import SubFooter from "./Subfooter";
 import Footer from "../Landingpage/Footer";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 const About = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/contact");
+  };
+
   return (
     <>
       <section className="bg-slate-50 py-16 sm:py-20 md:py-24 px-4 sm:px-6 flex justify-center">
@@ -26,7 +33,7 @@ const About = () => {
           </p>
 
           {/* Mission and Vision */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 items-start mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 items-start mb-16 sm:mb-20 mt-10">
             {/* Mission */}
             <div className="text-left px-2 sm:px-0">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 font-['Quicksand']">
@@ -92,7 +99,22 @@ const About = () => {
           {/* Team + Journey + SubFooter */}
           <Team />
           <Ourjourney />
-          <SubFooter />
+          <SubFooter
+            heading="Never Miss an Event"
+            subheading={
+              <>
+                Experience the difference of quality early childhood education.
+                <br className="hidden sm:block" />
+                Schedule a visit to see our approach in action.
+              </>
+            }
+            primaryBtnText="Book A Visit"
+            secondaryBtnText="Contact Us"
+            containerClass="bg-[var(--secondary-500)]"
+            maxWidth="max-w-5xl"
+            paddingY="py-24"
+            onSecondaryClick={handleClick}
+          />
         </div>
       </section>
 

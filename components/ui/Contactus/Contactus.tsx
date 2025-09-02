@@ -18,7 +18,7 @@ const Contactus = () => {
             Contact Us
           </h2>
           <p className="text-gray-600 font-medium max-w-3xl mx-auto mb-12 sm:mb-16 text-base sm:text-lg leading-relaxed font-['Quicksand']">
-            We'd love to hear from you. Get in touch with our friendly team
+            We&apos;d love to hear from you. Get in touch with our friendly team
             today.
           </p>
         </div>
@@ -187,7 +187,7 @@ const Contactus = () => {
               {/* Child’s Age */}
               <div>
                 <label className="block text-sm font-medium text-slate-700">
-                  Child's Age (if applicable)
+                  Child&apos;s Age (if applicable)
                 </label>
                 <input
                   type="text"
