@@ -89,7 +89,7 @@ const Calender = () => {
                     </label>
                     <select className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-black w-full">
                       <option>Select age</option>
-                      {Array.from({ length: 18 }, (_, i) => i + 1).map(
+                      {Array.from({ length: 12 }, (_, i) => i + 1).map(
                         (age) => (
                           <option key={age} value={age}>
                             {age}
@@ -164,7 +164,7 @@ const Calender = () => {
                     Book Visit
                   </button>
                   <button className="flex-1 h-10 bg-amber-50 rounded-md outline outline-1 outline-amber-300 font-medium text-black">
-                    Learn More About Programs
+                    Learn More
                   </button>
                 </div>
               </div>

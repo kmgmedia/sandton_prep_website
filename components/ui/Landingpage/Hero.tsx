@@ -54,7 +54,7 @@ export default function Home() {
         {/* Buttons */}
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <a
-            href="#book"
+            href="/bookpage"
             className="inline-flex items-center justify-center px-6 py-3 bg-[#FFD900] hover:bg-[#FFD43B] text-gray-900 font-medium rounded-md shadow-sm transition font-quicksand"
           >
             Book A Visit <ArrowRight className="ml-2 w-4 h-4" />

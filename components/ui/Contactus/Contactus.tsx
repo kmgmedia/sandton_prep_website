@@ -8,7 +8,7 @@ import SubFooter from "../Aboutpage/Subfooter";
 
 const Contactus = () => {
 
-  
+
   return (
     <>
       {/* Top Section */}
@@ -77,8 +77,8 @@ const Contactus = () => {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Address</h3>
-                  <p className="text-slate-500">123 Education Avenue</p>
-                  <p className="text-slate-500">Sandton, Johannesburg 2196</p>
+                  <p className="text-slate-500">1 Egbeyemi Close, Folarin Street,</p>
+                  <p className="text-slate-500">Egbeda/ Alimosho 100267, Lagos</p>
                   <span className="text-amber-500 text-xs font-semibold mt-2">
                     Get directions
                   </span>
