@@ -171,10 +171,10 @@ const Calender = () => {
             </div>
           </div>
 
-          {/* Right Side Info Box */}
+          
           {/* Right Side Info Box */}
           <div className="w-full lg:w-96 flex-shrink-0 flex flex-col gap-7 mt-8 lg:mt-0">
-            <div className="h-auto px-6 py-6 bg-white rounded-lg shadow-sm flex flex-col gap-5">
+            <div className="h-auto px-6 py-6 bg-white rounded-lg shadow-sm flex flex-col gap-3">
               <h3 className="text-xl font-bold text-slate-700">
                 What to Expect
               </h3>
@@ -230,7 +230,7 @@ const Calender = () => {
                 <h4 className="text-xl font-bold text-slate-700 font-['Quicksand']">
                   Parent Reviews
                 </h4>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-6">
                   {[
                     {
                       review:

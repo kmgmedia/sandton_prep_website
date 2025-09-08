@@ -1,6 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import Button from "../button";
+
+
+
 
 export default function VisitSection() {
   return (
@@ -21,19 +26,27 @@ export default function VisitSection() {
             interdum sed id convallis.
           </p>
           <div className="flex gap-4 mt-4 flex-wrap">
-            <button className="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-gray-700 transition">
-              Let’s Get in Touch
-            </button>
-            <Button
-              label="Book a Visit"
-              onClick={() => alert("Book a Visit pressed!")}
-              showArrow
-            />
+            <Link href="/contact">
+              <button className="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-gray-700 transition">
+                Let&apos;s Get in Touch
+              </button>
+            </Link>
+            <Link href="/bookpage">
+              <Button label="Book a Visit" showArrow />
+            </Link>
           </div>
         </div>
 
         {/* Right Column - Placeholder for Image */}
-        <div className="w-full h-64 md:h-80 bg-gray-400 rounded-2xl"></div>
+        <div>
+          <Image
+            src="/assets/kids.jpg" // remove /public
+            alt="Kids playing"
+            width={800} // set your desired width
+            height={320} // set your desired height
+            className="rounded-2xl object-cover"
+          />
+        </div>
       </div>
     </main>
   );

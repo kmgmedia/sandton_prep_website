@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 
 const Curriculum = () => {
@@ -31,11 +32,13 @@ const Curriculum = () => {
       title: "Upcoming Events",
       desc: "Join us for special activities and community celebrations",
       btn: "View Events",
+      link: "/events",
     },
     {
       title: "School Blog",
       desc: "Educational insights and parenting tips from our experts",
       btn: "Read Blogs",
+      link: "/blog",
     },
     {
       title: "Get in Touch",
@@ -45,6 +48,7 @@ const Curriculum = () => {
         </>
       ),
       btn: "Contact Us",
+      link: "/contact",
     },
   ];
 
@@ -91,9 +95,11 @@ const Curriculum = () => {
 
       {/* Explore Button */}
       <div className="flex justify-center gap-6 flex-wrap">
-        <button className="px-6 py-3 bg-yellow-300 rounded-lg shadow hover:shadow-md text-gray-900 text-lg font-semibold font-['Quicksand']">
-          Explore Full Curriculum
-        </button>
+        <Link href="/classes">
+          <button className="px-6 py-3 bg-yellow-300 rounded-lg shadow hover:shadow-md text-gray-900 text-lg font-semibold font-['Quicksand']">
+            Explore Full Curriculum
+          </button>
+        </Link>
       </div>
 
       {/* Info Cards on full yellow background */}
@@ -110,9 +116,13 @@ const Curriculum = () => {
             <p className="text-slate-700 text-base sm:text-lg font-medium font-['Quicksand'] text-center leading-relaxed break-words">
               {card.desc}
             </p>
-            <button className="px-5 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
-              {card.btn}
-            </button>
+
+            {/* three Button's works dynamically from here */}
+            <Link href={card.link}>
+              <button className="px-5 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
+                {card.btn}
+              </button>
+            </Link>
           </div>
         ))}
       </div>

@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Button from "../button";
 import Discovercard from "./Discovercard";
@@ -60,7 +61,7 @@ export default function Home() {
             Book A Visit <ArrowRight className="ml-2 w-4 h-4" />
           </a>
           <a
-            href="#learn"
+            href="/classes"
             className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-800 hover:bg-gray-100 font-medium rounded-md transition font-quicksand"
           >
             Learn More
@@ -104,11 +105,9 @@ export default function Home() {
 
               {/* Button - centered under text */}
               <div className="flex justify-center lg:justify-start">
-                <Button
-                  label="Learn More"
-                  onClick={() => alert("Learn More pressed!")}
-                  showArrow
-                />
+                <Link href="/classes">
+                  <Button label="Learn More" showArrow />
+                </Link>
               </div>
             </div>
 

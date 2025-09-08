@@ -6,7 +6,7 @@ const Believe = () => {
   return (
     <div className="flex justify-center py-20 px-4">
       {/* Yellow container */}
-      <div className="w-full max-w-6xl px-6 sm:px-10 md:px-16 py-7 bg-yellow-300 rounded-[30px] flex flex-col items-center gap-8">
+      <div className="w-full max-w-6xl px-6 sm:px-10 md:px-20 py-7 bg-yellow-300 rounded-[30px] flex flex-col items-center gap-8">
         {/* Content Wrapper */}
         <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-12 md:gap-20 w-full">
           {/* Left Column - Cards */}
@@ -76,12 +76,12 @@ const Believe = () => {
 
           {/* Right Column - Text */}
           <div className="w-full md:w-96 flex flex-col gap-5 text-center md:text-left">
-            <h2
+            <h3
               className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-4 tracking-wider"
               style={{ WebkitTextStroke: 0 }}
             >
               What we believe in
-            </h2>
+            </h3>
             <p className="text-blue-950 text-base sm:text-lg font-semibold font-['Quicksand']">
               Lorem ipsum dolor sit amet consectetur. Mauris donec quam maecenas
               arcu adipiscing integer vulputate interdum pellentesque. Vitae
@@ -89,8 +89,7 @@ const Believe = () => {
             </p>
             <p className="text-blue-950 text-base sm:text-lg font-semibold font-['Quicksand']">
               Lorem ipsum dolor sit amet consectetur. Mauris donec quam maecenas
-              arcu adipiscing integer vulputate interdum pellentesque. Vitae
-              interdum sed id convallis. Integer vulputate interdum
+              arcu adipiscing integer vulputate interdum pellentesque.
               pellentesque. Vitae interdum sed id convallis.
             </p>
           </div>

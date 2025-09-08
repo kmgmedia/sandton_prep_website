@@ -1,4 +1,6 @@
 "use client";
+
+import Link from "next/link";
 import { Clock, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -7,7 +9,7 @@ export default function ClassesSection() {
     {
       title: "Sunshine Tots",
       age: "6-18 Months",
-      desc: "Sensory play and early development",
+      desc: "Building strong foundations with sensory play",
       time: "6:00 AM - 7:00 PM",
       max: "Max 8 children",
       features: ["Sensory exploration", "Motor skills", "Social interaction"],
@@ -86,9 +88,11 @@ export default function ClassesSection() {
                 <li key={i}>⭐ {feature}</li>
               ))}
             </ul>
-            <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-lg">
-              Book Class
-            </button>
+            <div className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-lg">
+              <Link href="/classes">
+                <button>Book Class</button>
+              </Link>
+            </div>
           </motion.div>
         ))}
       </div>
