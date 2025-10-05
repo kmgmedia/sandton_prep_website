@@ -76,12 +76,12 @@ const Believe = () => {
 
           {/* Right Column - Text */}
           <div className="w-full md:w-96 flex flex-col gap-5 text-center md:text-left">
-            <h3
+            <h4
               className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-2 tracking-wider"
               style={{ WebkitTextStroke: 0 }}
             >
               What we believe in
-            </h3>
+            </h4>
             <p className="text-blue-950 text-base sm:text-md font-semibold font-['Quicksand']">
               Lorem ipsum dolor sit amet consectetur. Mauris donec quam maecenas
               arcu adipiscing integer vulputate interdum pellentesque. Vitae
