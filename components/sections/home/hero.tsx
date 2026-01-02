@@ -1,18 +1,16 @@
-// components/Hero.tsx
+// components/sections/home/hero.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Button from "../button";
-import Discovercard from "./Discovercard";
-import Comeover from "./Comeover";
-import Capturing from "./Capturing";
-import Believe from "./Believe";
-import Curriculum from "./Curriculum";
-import Footer from "./Footer";
-
-
+import Button from "@/components/ui/button";
+import Discovercard from "./discover-card";
+import Comeover from "./come-over";
+import Capturing from "./capturing";
+import Believe from "./believe";
+import Curriculum from "./curriculum";
+import Footer from "../shared/footer";
 
 export default function Home() {
   return (
@@ -23,14 +21,14 @@ export default function Home() {
         alt="cloud"
         width={200}
         height={160}
-        className="absolute top-60 left-60"
+        className="absolute top-[280px] left-4 w-12 h-10 sm:top-[320px] sm:left-8 sm:w-16 sm:h-12 md:w-32 md:h-24 md:top-60 md:left-20 lg:w-40 lg:h-32 lg:left-60"
       />
       <Image
         src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1755915410/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/cloud-2_dv1cy8.png"
         alt="cloud"
         width={180}
         height={160}
-        className="absolute top-60 right-60"
+        className="absolute top-[280px] right-4 w-12 h-10 sm:top-[320px] sm:right-8 sm:w-16 sm:h-12 md:w-32 md:h-24 md:top-60 md:right-20 lg:w-40 lg:h-32 lg:right-60"
       />
 
       <div className="container mx-auto flex flex-col items-center text-center px-4">

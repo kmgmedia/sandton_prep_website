@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import BlogCard from "./Blogcards";
-import Footer from "../Landingpage/Footer";
-import SelectionBtn from "./selectionbtn";
+import BlogCard from "./blog-cards";
+import Footer from "../shared/footer";
+import SelectionBtn from "./selection-btn";
 
 const Blogpage = () => {
   return (

@@ -1,4 +1,4 @@
-import Bookpage from "@/components/ui/Book/Bookpage";
+import Bookpage from "@/components/features/booking/book-page";
 
 export default function EventsPage() {
   return <Bookpage />;

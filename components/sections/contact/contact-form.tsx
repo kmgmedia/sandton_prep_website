@@ -2,8 +2,8 @@
 
 import React from "react";
 import Maps from "./maps";
-import Footer from "../Landingpage/Footer";
-import SubFooter from "../Aboutpage/Subfooter";
+import Footer from "../shared/footer";
+import SubFooter from "../about/sub-footer";
 
 
 const Contactus = () => {

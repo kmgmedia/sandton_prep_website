@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Classcards from "../Ourclasses/Classcards";
-import SubFooter from "../Aboutpage/Subfooter";
-import Footer from "../Landingpage/Footer";
+import Classcards from "./class-cards";
+import SubFooter from "../about/sub-footer";
+import Footer from "../shared/footer";
 
 
 const Classpage = () => {

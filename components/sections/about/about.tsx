@@ -2,10 +2,10 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Team from "./Team";
-import Ourjourney from "./Ourjourney";
-import SubFooter from "./Subfooter";
-import Footer from "../Landingpage/Footer";
+import Team from "./team";
+import Ourjourney from "./our-journey";
+import SubFooter from "./sub-footer";
+import Footer from "../shared/footer";
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 const About = () => {

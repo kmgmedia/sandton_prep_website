@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import SelectionBtn from "../Schoolblog/selectionbtn";
-import EventCard from "./Eventcards";
-import Footer from "../Landingpage/Footer";
-import SubFooter from "../Aboutpage/Subfooter";
+import SelectionBtn from "../blog/selection-btn";
+import EventCard from "./event-cards";
+import Footer from "../shared/footer";
+import SubFooter from "../about/sub-footer";
 
 
 

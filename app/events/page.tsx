@@ -1,4 +1,4 @@
-import Eventpage from "@/components/ui/Schoolevents/Eventpage";
+import Eventpage from "@/components/sections/events/event-page";
 
 export default function EventsPage() {
   return <Eventpage />;

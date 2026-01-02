@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Schedule from "../Schedule/Schedule";
-import Footer from "../Landingpage/Footer";
+import Schedule from "@/components/sections/shared/schedule/schedule";
+import Footer from "@/components/sections/shared/footer";
 
 const Bookpage = () => {
   return (

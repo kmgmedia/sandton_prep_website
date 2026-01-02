@@ -1,4 +1,4 @@
-import Classpage from "@/components/ui/Ourclasses/Classpage";
+import Classpage from "@/components/sections/classes/class-page";
 
 export default function ClassesPage() {
   return <Classpage />;
