@@ -35,7 +35,7 @@ export default function ClassesSection() {
       max: "Max 15 children",
       features: ["Academic readiness", "Problem solving", "Leadership skills"],
       image:
-        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393659/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_40_10_PM_pqrgzy.png",
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1735915410/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/cloud-1_uyf0ti.png",
     },
   ];
 
