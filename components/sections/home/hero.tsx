@@ -94,11 +94,15 @@ export default function Home() {
             {/* Text Section */}
             <div className="w-full max-w-[602px] flex flex-col gap-12 text-center lg:text-left">
               <div className="text-gray-900 text-lg font-medium font-quicksand leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur. Mauris donec quam
-                maecenas arcu adipiscing integer vulputate interdum
-                pellentesque. Vitae interdum sed id convallis nisi lorem elit.
-                Pellentesque imperdiet cras vulputate arcu sit pharetra auctor
-                pellentesque. Nisl amet convallis risus condimentum.
+                At Sandton Preparatory School, we believe every child deserves a
+                foundation built on love, creativity, and excellence. Our
+                carefully designed programs combine play-based learning with
+                structured educational activities, ensuring your child develops
+                academically, socially, and emotionally. With experienced
+                teachers, state-of-the-art facilities, and a curriculum that
+                celebrates each child&apos;s unique journey, we create an
+                environment where curiosity thrives and confident learners
+                emerge.
               </div>
 
               {/* Button - centered under text */}
@@ -110,7 +114,15 @@ export default function Home() {
             </div>
 
             {/* Image / Graphic Section */}
-            <div className="w-full lg:w-[600px] h-[200px] md:h-[300px] bg-zinc-300 rounded-2xl"></div>
+            <div className="w-full lg:w-[600px] h-[200px] md:h-[300px] bg-zinc-300 rounded-2xl overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394249/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/WhatsApp_Image_2023-07-13_at_09.53.20fgfh_bz6qag.jpg"
+                alt="Students learning and playing"
+                width={600}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
 

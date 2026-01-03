@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -13,6 +14,8 @@ export default function ClassesSection() {
       time: "6:00 AM - 7:00 PM",
       max: "Max 8 children",
       features: ["Sensory exploration", "Motor skills", "Social interaction"],
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393254/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/blog-sub-daycare-supplies-checklist-2-6226231_rpd3ka.jpg",
     },
     {
       title: "Creative Minds",
@@ -21,6 +24,8 @@ export default function ClassesSection() {
       time: "7:30 AM - 3:00 PM",
       max: "Max 15 children",
       features: ["Art & craft", "Music & movement", "Language development"],
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393482/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_37_15_PM_v8rd7c.png",
     },
     {
       title: "Little Explorers",
@@ -29,6 +34,8 @@ export default function ClassesSection() {
       time: "7:30 AM - 4:00 PM",
       max: "Max 15 children",
       features: ["Academic readiness", "Problem solving", "Leadership skills"],
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393659/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_40_10_PM_pqrgzy.png",
     },
   ];
 
@@ -71,7 +78,15 @@ export default function ClassesSection() {
             className="bg-[#FFFBEA] rounded-2xl shadow-sm border p-8 flex flex-col items-center text-center"
           >
             <div className="absolute w-20 h-20 rounded-full bg-[var(--secondary-100)] flex items-center justify-center mb-6"></div>
-            <div className=" relative w-16 h-16 rounded-full bg-[var(--primary-800)] flex items-center justify-center mb-6"></div>
+            <div className="relative w-16 h-16 rounded-full bg-[var(--primary-800)] flex items-center justify-center mb-6 overflow-hidden">
+              <Image
+                src={card.image}
+                alt={card.title}
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               {card.title}
             </h3>
@@ -88,9 +103,11 @@ export default function ClassesSection() {
                 <li key={i}>⭐ {feature}</li>
               ))}
             </ul>
-            <div className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-lg">
-              <Link href="/classes">
-                <button>Book Class</button>
+            <div className="w-full">
+              <Link href="/bookpage">
+                <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-lg">
+                  Book Class
+                </button>
               </Link>
             </div>
           </motion.div>
@@ -99,9 +116,11 @@ export default function ClassesSection() {
 
       {/* View All Button */}
       <div className="mt-16 mb-12">
-        <button className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-100 transition">
-          View All Classes <ArrowRight className="w-4 h-4" />
-        </button>
+        <Link href="/classes">
+          <button className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-100 transition">
+            View All Classes <ArrowRight className="w-4 h-4" />
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -26,10 +26,26 @@ export default function Capturing() {
       {/* Shapes & Clouds */}
       <div className="relative w-full max-w-6xl h-[300px] sm:h-[400px] md:h-[473px]">
         {/* Shape Left */}
-        <div className="absolute w-60 sm:w-80 md:w-[480px] h-40 sm:h-56 md:h-72 -rotate-12 bg-neutral-600 rounded-3xl left-4 sm:left-20 md:left-40 top-20 sm:top-24"></div>
+        <div className="absolute w-60 sm:w-80 md:w-[480px] h-40 sm:h-56 md:h-72 -rotate-12 bg-neutral-600 rounded-3xl left-4 sm:left-20 md:left-40 top-20 sm:top-24 overflow-hidden">
+          <Image
+            src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393879/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/WhatsApp_Image_2025-07-08_at_21.14.10_f7676dd9_l7flgy.jpg"
+            alt="Kids learning"
+            width={480}
+            height={288}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Shape Right */}
-        <div className="absolute w-52 sm:w-72 md:w-96 h-40 sm:h-52 md:h-64 rotate-12 bg-zinc-400 rounded-3xl right-4 sm:right-20 md:right-40 top-10 sm:top-16"></div>
+        <div className="absolute w-52 sm:w-72 md:w-96 h-40 sm:h-52 md:h-64 rotate-12 bg-zinc-400 rounded-3xl right-4 sm:right-20 md:right-40 top-10 sm:top-16 overflow-hidden">
+          <Image
+            src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393961/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/WhatsApp_Image_2025-07-08_at_21.17.53_bdf9d3ad_bakuye.jpg"
+            alt="Children playing"
+            width={384}
+            height={256}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Cloud Left */}
         <div className="absolute w-24 sm:w-28 md:w-32 left-6 sm:left-20 md:left-14 top-24 sm:top-12">

@@ -7,8 +7,6 @@ import EventCard from "./event-cards";
 import Footer from "../shared/footer";
 import SubFooter from "../about/sub-footer";
 
-
-
 const EventPage = () => {
   const router = useRouter();
 
@@ -119,7 +117,7 @@ const EventPage = () => {
             <EventCard
               categoryLabel="Academic"
               title="Parent-Teacher Conference Week"
-              description="One-on-one meetings to discuss your child&apos;s progress and development."
+              description="One-on-one meetings to discuss your child's progress and development."
               classroomInfo="Individual Classrooms"
               ageInfo="All Ages"
               dateInfo="April 22-26, 2025"
@@ -144,7 +142,7 @@ const EventPage = () => {
           <div className="w-full max-w-[480px]">
             <EventCard
               categoryLabel="Celebration"
-              title="Mother&apos;s Day Celebration"
+              title="Mother's Day Celebration"
               description="Special performance and activities to celebrate the wonderful mothers in our community."
               classroomInfo="School Garden & Playground"
               ageInfo="All Ages"

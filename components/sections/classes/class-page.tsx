@@ -5,7 +5,6 @@ import Classcards from "./class-cards";
 import SubFooter from "../about/sub-footer";
 import Footer from "../shared/footer";
 
-
 const Classpage = () => {
   return (
     <>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 const Curriculum = () => {
@@ -9,21 +10,29 @@ const Curriculum = () => {
       title: "Infants",
       age: "6-18 months",
       desc: "Sensory exploration and bonding",
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png",
     },
     {
       title: "Toddlers",
       age: "18 months - 3 years",
       desc: "Language and motor development",
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767399749/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_3_2026_01_22_08_AM_balxfn.png",
     },
     {
       title: "Preschool",
       age: "3-5 years",
       desc: "School readiness and creativity",
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767399405/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_3_2026_01_16_30_AM_vpeckn.png",
     },
     {
       title: "Primary",
       age: "6-10 years",
       desc: "Academic foundation and character",
+      image:
+        "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767399809/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_3_2026_01_23_19_AM_enrrvy.png",
     },
   ];
 
@@ -76,7 +85,15 @@ const Curriculum = () => {
             className="flex-shrink-0 w-52 sm:w-56 md:w-64 lg:w-72 p-3 bg-neutral-100 rounded-2xl shadow-lg flex flex-col items-center gap-2"
           >
             <div className="w-14 h-14 p-3 bg-amber-300/10 rounded-2xl flex justify-center items-center">
-              <div className="w-7 h-7 bg-amber-300 rounded-full"></div>
+              <div className="w-7 h-7 bg-amber-300 rounded-full overflow-hidden border-2 border-yellow-400">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  width={28}
+                  height={28}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <div className="flex flex-col items-center gap-1 text-center">
               <h3 className="text-slate-700 text-lg sm:text-xl font-bold font-['Quicksand']">
@@ -109,7 +126,15 @@ const Curriculum = () => {
             key={i}
             className="flex-shrink-0 w-72 sm:w-80 md:w-96 p-4 bg-white rounded-3xl shadow-md flex flex-col items-center gap-4"
           >
-            <div className="w-20 h-20 bg-amber-300/20 rounded-full flex items-center justify-center"></div>
+            <div className="w-20 h-20 bg-amber-300/20 rounded-full flex items-center justify-center overflow-hidden border-4 border-yellow-400">
+              <Image
+                src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png"
+                alt={card.title}
+                width={80}
+                height={80}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h3 className="text-gray-900 text-xl sm:text-2xl font-bold font-['Quicksand'] text-center">
               {card.title}
             </h3>
@@ -138,12 +163,16 @@ const Curriculum = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="px-6 py-3 bg-yellow-300 rounded-lg shadow text-blue-950 font-semibold font-['Quicksand']">
-            Explore Programs
-          </button>
-          <button className="px-6 py-3 bg-neutral-100 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
-            Book a Visit
-          </button>
+          <Link href="/classes">
+            <button className="px-6 py-3 bg-yellow-300 rounded-lg shadow text-blue-950 font-semibold font-['Quicksand']">
+              Explore Programs
+            </button>
+          </Link>
+          <Link href="/bookpage">
+            <button className="px-6 py-3 bg-neutral-100 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
+              Book a Visit
+            </button>
+          </Link>
         </div>
       </div>
     </div>

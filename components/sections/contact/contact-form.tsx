@@ -5,10 +5,7 @@ import Maps from "./maps";
 import Footer from "../shared/footer";
 import SubFooter from "../about/sub-footer";
 
-
 const Contactus = () => {
-
-
   return (
     <>
       {/* Top Section */}
@@ -77,8 +74,12 @@ const Contactus = () => {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Address</h3>
-                  <p className="text-slate-500">1 Egbeyemi Close, Folarin Street,</p>
-                  <p className="text-slate-500">Egbeda/ Alimosho 100267, Lagos</p>
+                  <p className="text-slate-500">
+                    1 Egbeyemi Close, Folarin Street,
+                  </p>
+                  <p className="text-slate-500">
+                    Egbeda/ Alimosho 100267, Lagos
+                  </p>
                   <span className="text-amber-500 text-xs font-semibold mt-2">
                     Get directions
                   </span>

@@ -4,9 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 
-
-
-
 export default function VisitSection() {
   return (
     <main className="bg-[var(--neutrals-700)] w-screen py-16 flex justify-center">
