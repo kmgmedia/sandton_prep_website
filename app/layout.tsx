@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Navbar } from "../components/ui";
+import { Navbar } from "@/components/ui";
 import { Quicksand } from "next/font/google";
 import localFont from "next/font/local";
 
