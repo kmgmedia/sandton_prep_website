@@ -28,18 +28,32 @@ const Footer = () => {
           </p>
           {/* Social Icons */}
           <div className="flex gap-2">
-            <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
+            <Link
+              href="https://www.facebook.com/sandtonprep"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center hover:bg-yellow-400 transition-colors"
+            >
               <Facebook className="w-4 h-4 text-[var(--primary-800)]" />
-            </div>
-            <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
+            </Link>
+            <Link
+              href="https://www.instagram.com/sandtonprep"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center hover:bg-yellow-400 transition-colors"
+            >
               <Instagram className="w-4 h-4 text-[var(--primary-800)]" />
-            </div>
-            <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
+            </Link>
+            <Link
+              href="https://www.tiktok.com/@sandtonprep"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center hover:bg-yellow-400 transition-colors"
+            >
               <SiTiktok className="w-4 h-4 text-[var(--primary-800)]" />
-            </div>
+            </Link>
           </div>
         </div>
-
 
         {/* Quick Links */}
         <div className="flex flex-col gap-4 md:w-32">
@@ -48,23 +62,23 @@ const Footer = () => {
           </h3>
           <div className="flex flex-col gap-2">
             {[
-              "Home",
-              "About Us",
-              "Classes & Programs",
-              "Events",
-              "Blog",
-              "Contact",
+              { label: "Home", href: "/" },
+              { label: "About Us", href: "/about" },
+              { label: "Classes & Programs", href: "/classes" },
+              { label: "Events", href: "/events" },
+              { label: "Blog", href: "/blog" },
+              { label: "Contact", href: "/contact" },
             ].map((link, i) => (
-              <span
+              <Link
                 key={i}
-                className="text-neutral-100 text-xs font-medium font-['Quicksand']"
+                href={link.href}
+                className="text-neutral-100 text-xs font-medium font-['Quicksand'] hover:text-yellow-300 transition-colors"
               >
-                {link}
-              </span>
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>
-
 
         {/* Our Programs */}
         <div className="flex flex-col gap-4 md:w-52">
@@ -73,23 +87,23 @@ const Footer = () => {
           </h3>
           <div className="flex flex-col gap-2">
             {[
-              "Toddler Care (6-18 months)",
-              "Early Learning (2-4 years)",
-              "Primary Education (5-10 years)",
-              "Art & Craft Classes",
-              "Science & Nature",
-              "Music & Movement",
+              { label: "Toddler Care (6-18 months)", href: "/classes" },
+              { label: "Early Learning (2-4 years)", href: "/classes" },
+              { label: "Primary Education (5-10 years)", href: "/classes" },
+              { label: "Art & Craft Classes", href: "/classes" },
+              { label: "Science & Nature", href: "/classes" },
+              { label: "Music & Movement", href: "/classes" },
             ].map((program, i) => (
-              <span
+              <Link
                 key={i}
-                className="text-neutral-100 text-xs font-medium font-['Quicksand']"
+                href={program.href}
+                className="text-neutral-100 text-xs font-medium font-['Quicksand'] hover:text-yellow-300 transition-colors"
               >
-                {program}
-              </span>
+                {program.label}
+              </Link>
             ))}
           </div>
         </div>
-
 
         {/* Contact Info */}
         <div className="flex flex-col gap-6 md:w-60">
@@ -101,19 +115,36 @@ const Footer = () => {
               <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-[var(--primary-800)]" />
               </div>
-              <span>1 Egbeyemi Close, Folarin Street, Alimosho, Lagos.</span>
+              <Link
+                href="https://www.google.com/maps/search/1+Egbeyemi+Close,+Folarin+Street,+Alimosho,+Lagos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-yellow-300 transition-colors"
+              >
+                1 Egbeyemi Close, Folarin Street, Alimosho, Lagos.
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
                 <Phone className="w-4 h-4 text-[var(--primary-800)]" />
               </div>
-              <span>+234 915 911 6203</span>
+              <Link
+                href="tel:+2349159116203"
+                className="hover:text-yellow-300 transition-colors"
+              >
+                +234 915 911 6203
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
                 <Mail className="w-4 h-4 text-[var(--primary-800)]" />
               </div>
-              <span>info@sandtonprep.edu.ng</span>
+              <Link
+                href="mailto:info@sandtonprep.edu.ng"
+                className="hover:text-yellow-300 transition-colors"
+              >
+                info@sandtonprep.edu.ng
+              </Link>
             </div>
             <div className="flex items-start gap-2">
               <div className="w-6 h-6 bg-yellow-300 rounded flex items-center justify-center">
@@ -129,19 +160,25 @@ const Footer = () => {
         </div>
       </div>
 
-
       {/* Bottom section */}
       <div className="w-full max-w-[1200px] border-t border-gray-500 pt-4 flex flex-col md:flex-row flex-wrap justify-between items-center gap-4 text-neutral-100 text-xs font-medium font-['Quicksand']">
         <span>© 2025 Sandton Preparatory School. All rights reserved.</span>
         <div className="flex gap-6">
-          {["Privacy Policy", "Terms of Service", "Admissions Policy"].map(
-            (policy, i) => (
-              <span key={i}>{policy}</span>
-            )
-          )}
+          {[
+            { label: "Privacy Policy", href: "#" },
+            { label: "Terms of Service", href: "#" },
+            { label: "Admissions Policy", href: "#" },
+          ].map((policy, i) => (
+            <Link
+              key={i}
+              href={policy.href}
+              className="hover:text-yellow-300 transition-colors"
+            >
+              {policy.label}
+            </Link>
+          ))}
         </div>
       </div>
-
     </div>
   );
 };
