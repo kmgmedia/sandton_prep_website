@@ -2,8 +2,21 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Believe = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+      },
+    }),
+  };
+
   return (
     <div className="flex justify-center py-20 px-4">
       {/* Yellow container */}
@@ -15,7 +28,15 @@ const Believe = () => {
             {/* First Column */}
             <div className="flex flex-col gap-6 md:mt-0 items-center md:items-start">
               {/* Card - Community */}
-              <div className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs">
+              <motion.div
+                custom={0}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs cursor-pointer"
+              >
                 <div className="w-14 h-14 bg-stone-300 rounded-full mx-auto md:mx-0 overflow-hidden border-4 border-yellow-400">
                   <Image
                     src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png"
@@ -34,10 +55,18 @@ const Believe = () => {
                     children to create a supportive learning environment.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card - Respect */}
-              <div className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs">
+              <motion.div
+                custom={1}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.05, rotate: -2 }}
+                className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs cursor-pointer"
+              >
                 <div className="w-14 h-14 bg-stone-300 rounded-full mx-auto md:mx-0 overflow-hidden border-4 border-yellow-400">
                   <Image
                     src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767397178/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/Gemini_Generated_Image_g73rljg73rljg73r_aqaydk.png"
@@ -56,13 +85,21 @@ const Believe = () => {
                     environment through positive interactions.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Second Column */}
             <div className="flex flex-col gap-6 md:mt-10 items-center md:items-start">
               {/* Card - Creativity */}
-              <div className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs">
+              <motion.div
+                custom={2}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs cursor-pointer"
+              >
                 <div className="w-14 h-14 bg-stone-300 rounded-full mx-auto md:mx-0 overflow-hidden border-4 border-yellow-400">
                   <Image
                     src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767397026/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/Gemini_Generated_Image_elauolelauolelau_ughlyu.png"
@@ -81,10 +118,18 @@ const Believe = () => {
                     various creative activities and programs.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card - Growth */}
-              <div className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs">
+              <motion.div
+                custom={3}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.05, rotate: -2 }}
+                className="p-3 bg-amber-50 rounded-[20px] flex flex-col gap-3 shadow-md w-full max-w-xs cursor-pointer"
+              >
                 <div className="w-14 h-14 bg-stone-300 rounded-full mx-auto md:mx-0 overflow-hidden border-4 border-yellow-400">
                   <Image
                     src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767397548/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_3_2026_12_45_29_AM_n7k8so.png"
@@ -103,12 +148,18 @@ const Believe = () => {
                     of a child&apos;s educational journey.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Right Column - Text */}
-          <div className="w-full md:w-96 flex flex-col gap-5 text-center md:text-left">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full md:w-96 flex flex-col gap-5 text-center md:text-left"
+          >
             <h4
               className="font-sandyKids font-bold text-4xl md:text-5xl text-gray-900 mb-2 tracking-wider"
               style={{ WebkitTextStroke: 0 }}
@@ -116,11 +167,13 @@ const Believe = () => {
               What we believe in
             </h4>
             <p className="text-blue-950 text-base sm:text-md font-semibold font-['Quicksand']">
-              Lorem ipsum dolor sit amet consectetur. Mauris donec quam maecenas
-              arcu adipiscing integer vulputate interdum pellentesque. Vitae
-              interdum sed id convallis.
+              At Sandton Preparatory School, our core values guide everything we
+              do. We believe in building a strong community, fostering respect
+              for all, encouraging creativity in learning, and supporting
+              continuous growth. These principles shape how we nurture each
+              child's unique potential.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

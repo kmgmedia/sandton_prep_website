@@ -18,9 +18,10 @@ export default function VisitSection() {
             Look Around
           </h2>
           <p className="text-gray-300 text-lg font-['Quicksand'] text-left">
-            Lorem ipsum dolor sit amet consectetur. Mauris donec quam maecenas
-            arcu adipiscing integer vulputate interdum pellentesque. Vitae
-            interdum sed id convallis.
+            We invite you to visit our vibrant learning environment and see
+            firsthand how we nurture young minds. Take a tour of our facilities,
+            meet our experienced teachers, and discover why parents trust us
+            with their children's early education journey.
           </p>
           <div className="flex gap-4 mt-4 flex-wrap">
             <Link href="/contact">
