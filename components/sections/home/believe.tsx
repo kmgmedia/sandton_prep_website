@@ -52,7 +52,7 @@ const Believe = () => {
                   </h3>
                   <p className="text-blue-950 text-xs sm:text-sm font-medium font-['Quicksand']">
                     Building strong connections between families, teachers, and
-                    children to create a supportive learning environmentt.
+                    children to create a supportive learning environment.
                   </p>
                 </div>
               </motion.div>
