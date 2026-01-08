@@ -1,73 +1,282 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+import SubmissionSuccess from "@/components/features/booking/submission-success";
 
 const Calender = () => {
+  const [selectedTime, setSelectedTime] = useState<string>("");
+  const [missingFields, setMissingFields] = useState<string[]>([]);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  
+  // Create refs for error fields
+  const fieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    childName: "",
+    childAge: "",
+    school: "",
+    date: "",
+    adults: "",
+    notes: "",
+  });
+
+  const requiredFields = [
+    { key: "firstName", label: "First Name" },
+    { key: "lastName", label: "Last Name" },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Phone" },
+    { key: "childAge", label: "Child's Age" },
+    { key: "date", label: "Preferred Date" },
+    { key: "adults", label: "Adults Attending" },
+    { key: "time", label: "Preferred Time" },
+  ];
+
+  const handleChange = (key: string, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const inputErrorClass = (key: string) =>
+    missingFields.includes(key)
+      ? "placeholder:text-red-500 outline-red-400 text-red-600"
+      : "";
+
+  const labelErrorClass = (key: string) =>
+    missingFields.includes(key) ? "text-red-600" : "";
+
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    if (!email) return false;
+    // Basic email regex pattern
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return false;
+
+    // Check for common domain typos and validate domain format
+    const domain = email.split("@")[1].toLowerCase();
+    
+    // List of valid email domains
+    const validDomains = [
+      "gmail.com",
+      "yahoo.com",
+      "yahoo.co.uk",
+      "yahoo.co.in",
+      "outlook.com",
+      "hotmail.com",
+      "aol.com",
+      "icloud.com",
+      "mail.com",
+      "protonmail.com",
+      "tutanota.com",
+      "yandex.com",
+      "zoho.com",
+      "mailbox.org",
+      "fastmail.com",
+      "gmx.com",
+      "live.com",
+      "msn.com",
+      "education.gov.ng",
+      "edu.ng",
+      "gov.ng",
+      // Add more domains as needed
+    ];
+
+    // Check if domain is in valid list or has a known structure
+    const isKnownDomain = validDomains.includes(domain);
+    
+    // Check for common typos
+    const commonTypos: { [key: string]: string } = {
+      "gmai.com": "gmail.com",
+      "gmil.com": "gmail.com",
+      "gmal.com": "gmail.com",
+      "yahooo.com": "yahoo.com",
+      "yaho.com": "yahoo.com",
+      "outlok.com": "outlook.com",
+      "hotmil.com": "hotmail.com",
+    };
+
+    if (commonTypos[domain]) {
+      return false; // Typo detected
+    }
+
+    // If it's not a known domain, check if it at least has a valid structure
+    // Allow custom domains if they have proper format
+    return isKnownDomain || /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(domain);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const missing = requiredFields
+      .filter((f) => {
+        if (f.key === "time") return !selectedTime;
+        return !form[f.key as keyof typeof form];
+      })
+      .map((f) => f.key);
+
+    // Validate email domain separately
+    const invalidEmail = form.email && !isValidEmail(form.email) ? ["email"] : [];
+    const allErrors = [...missing, ...invalidEmail];
+
+    setMissingFields(allErrors);
+    if (allErrors.length) {
+      // Scroll to first error field
+      const firstErrorKey = allErrors[0];
+      const errorElement = fieldRefs.current[firstErrorKey];
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+
+    setMissingFields([]);
+
+    const email = "admissions@sandtonprep.edu.ng";
+    const subject = encodeURIComponent("New Visit Booking Request");
+    const body = encodeURIComponent(
+      `First Name: ${form.firstName}
+Last Name: ${form.lastName}
+Email: ${form.email}
+Phone: ${form.phone}
+Child Name: ${form.childName || "N/A"}
+Child Age: ${form.childAge}
+Current School: ${form.school || "N/A"}
+Preferred Date: ${form.date}
+Preferred Time: ${selectedTime}
+Adults Attending: ${form.adults}
+Special Requirements: ${form.notes || "N/A"}`
+    );
+
+    // Show success modal
+    setShowSuccess(true);
+
+    // Open email client after a brief delay
+    setTimeout(() => {
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    }, 500);
+  };
+
   return (
     <>
-      {/* Top Section */}
+      <SubmissionSuccess
+        isOpen={showSuccess}
+        onClose={() => setShowSuccess(false)}
+      />
       <section className="flex justify-center px-4 py-2 bg-gray-50">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-8 lg:gap-16">
-          {/* Left Form Section */}
-          <div className="flex-1 flex flex-col gap-8 bg-white p-6 rounded-lg shadow-lg">
-            {/* Schedule Your Visit */}
+          <form
+            className="flex-1 flex flex-col gap-8 bg-white p-6 rounded-lg shadow-lg"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl font-bold text-slate-700 font-['Quicksand'] leading-loose text-center lg:text-left">
                 Schedule Your Visit
               </h2>
 
-              {/* Personal Info */}
               <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-                {/* First Column */}
                 <div className="flex-1 flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-slate-700">
+                  <div
+                    ref={(el) => {
+                      if (el) fieldRefs.current["firstName"] = el;
+                    }}
+                    className="flex flex-col gap-2"
+                  >
+                    <label
+                      className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                        "firstName"
+                      )}`}
+                    >
                       First Name *
                     </label>
                     <input
                       type="text"
                       placeholder="Your first name"
-                      className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
+                      value={form.firstName}
+                      onChange={(e) =>
+                        handleChange("firstName", e.target.value)
+                      }
+                      className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full ${inputErrorClass(
+                        "firstName"
+                      )}`}
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-slate-700">
-                      Email *
+                  <div
+                    ref={(el) => {
+                      if (el) fieldRefs.current["email"] = el;
+                    }}
+                    className="flex flex-col gap-2"
+                  >
+                    <label
+                      className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                        "email"
+                      )}`}
+                    >
+                      Email Address *
                     </label>
                     <input
                       type="email"
                       placeholder="your.email@example.com"
-                      className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
+                      value={form.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                      className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full ${inputErrorClass(
+                        "email"
+                      )}`}
                     />
                   </div>
                 </div>
 
-                {/* Second Column */}
                 <div className="flex-1 flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-slate-700">
+                  <div
+                    ref={(el) => {
+                      if (el) fieldRefs.current["lastName"] = el;
+                    }}
+                    className="flex flex-col gap-2"
+                  >
+                    <label
+                      className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                        "lastName"
+                      )}`}
+                    >
                       Last Name *
                     </label>
                     <input
                       type="text"
                       placeholder="Your last name"
-                      className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
+                      value={form.lastName}
+                      onChange={(e) => handleChange("lastName", e.target.value)}
+                      className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full ${inputErrorClass(
+                        "lastName"
+                      )}`}
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-slate-700">
+                  <div
+                    ref={(el) => {
+                      if (el) fieldRefs.current["phone"] = el;
+                    }}
+                    className="flex flex-col gap-2"
+                  >
+                    <label
+                      className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                        "phone"
+                      )}`}
+                    >
                       Phone *
                     </label>
                     <input
                       type="text"
                       placeholder="+234 11 xxx xxxx"
-                      className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
+                      value={form.phone}
+                      onChange={(e) => handleChange("phone", e.target.value)}
+                      className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full ${inputErrorClass(
+                        "phone"
+                      )}`}
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Child Information */}
               <div className="flex flex-col gap-6">
                 <h3 className="text-lg font-semibold text-slate-700">
                   Child Information
@@ -79,16 +288,35 @@ const Calender = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Child&apos;s full name"
+                      placeholder="Child's full name"
+                      value={form.childName}
+                      onChange={(e) =>
+                        handleChange("childName", e.target.value)
+                      }
                       className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
                     />
                   </div>
-                  <div className="flex-1 flex flex-col gap-2">
-                    <label className="text-sm font-medium text-slate-700">
+                  <div
+                    ref={(el) => {
+                      if (el) fieldRefs.current["childAge"] = el;
+                    }}
+                    className="flex-1 flex flex-col gap-2"
+                  >
+                    <label
+                      className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                        "childAge"
+                      )}`}
+                    >
                       Child&apos;s Age *
                     </label>
-                    <select className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-black w-full">
-                      <option>Select age</option>
+                    <select
+                      className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-black w-full ${inputErrorClass(
+                        "childAge"
+                      )}`}
+                      value={form.childAge}
+                      onChange={(e) => handleChange("childAge", e.target.value)}
+                    >
+                      <option value="">Select age</option>
                       {Array.from({ length: 12 }, (_, i) => i + 1).map(
                         (age) => (
                           <option key={age} value={age}>
@@ -106,48 +334,92 @@ const Calender = () => {
                   <input
                     type="text"
                     placeholder="Current educational setting"
+                    value={form.school}
+                    onChange={(e) => handleChange("school", e.target.value)}
                     className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-neutral-400 w-full"
                   />
                 </div>
               </div>
 
-              {/* Preferred Date & Time */}
-              <div className="flex flex-col gap-4">
-                <label className="text-sm font-medium text-slate-700">
+              <div
+                ref={(el) => {
+                  if (el) fieldRefs.current["date"] = el;
+                }}
+                className="flex flex-col gap-4"
+              >
+                <label
+                  className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                    "date"
+                  )}`}
+                >
                   Select Date *
                 </label>
                 <input
                   type="date"
-                  className="p-3 bg-white rounded-md shadow-sm w-full"
+                  value={form.date}
+                  onChange={(e) => handleChange("date", e.target.value)}
+                  className={`p-3 bg-white rounded-md shadow-sm w-full ${inputErrorClass(
+                    "date"
+                  )}`}
                 />
-
-                <label className="text-sm font-medium text-slate-700 mt-4">
-                  Preferred Time *
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"].map(
-                    (time, idx) => (
-                      <div
-                        key={idx}
-                        className="w-28 h-10 px-4 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 flex items-center justify-center text-xs text-slate-500 font-medium"
-                      >
-                        {time}
-                      </div>
-                    )
-                  )}
-                </div>
               </div>
 
-              {/* Additional Information */}
+              <div
+                ref={(el) => {
+                  if (el) fieldRefs.current["time"] = el;
+                }}
+              >
+                  <label
+                    className={`text-sm font-medium text-slate-700 mt-4 ${labelErrorClass(
+                      "time"
+                    )}`}
+                  >
+                    Preferred Time *
+                  </label>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"].map(
+                      (time, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setSelectedTime(time)}
+                          className={`w-28 h-10 px-4 py-2 rounded-md outline outline-1 outline-offset-[-1px] flex items-center justify-center text-xs font-medium transition-all cursor-pointer ${
+                            selectedTime === time
+                              ? "bg-yellow-400 outline-yellow-500 text-slate-900"
+                              : missingFields.includes("time")
+                              ? "bg-amber-50 outline-red-400 text-red-600"
+                              : "bg-amber-50 outline-amber-300/20 text-slate-500 hover:bg-amber-100"
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </div>
+
               <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium text-slate-700">
+                <div
+                  ref={(el) => {
+                    if (el) fieldRefs.current["adults"] = el;
+                  }}
+                  className="flex flex-col gap-2"
+                >
+                  <label
+                    className={`text-sm font-medium text-slate-700 ${labelErrorClass(
+                      "adults"
+                    )}`}
+                  >
                     Number of Adults Attending
                   </label>
                   <input
                     type="number"
                     placeholder="Select number"
-                    className="h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-black w-full"
+                    value={form.adults}
+                    onChange={(e) => handleChange("adults", e.target.value)}
+                    className={`h-10 px-3 py-2 bg-amber-50 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-sm text-black w-full ${inputErrorClass(
+                      "adults"
+                    )}`}
                   />
                 </div>
 
@@ -155,24 +427,25 @@ const Calender = () => {
                   <label className="text-sm font-medium text-slate-700">
                     Special Requirements or Questions
                   </label>
-                  <textarea className="h-20 bg-amber-50 rounded-md border border-amber-300/20 p-2 w-full"></textarea>
+                  <textarea
+                    className="h-20 bg-amber-50 rounded-md border border-amber-300/20 p-2 w-full"
+                    value={form.notes}
+                    onChange={(e) => handleChange("notes", e.target.value)}
+                  ></textarea>
                 </div>
 
-                {/* Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 mt-4">
-                  <button className="flex-1 h-10 bg-amber-300 rounded-md font-medium text-black">
+                <div className="mt-4">
+                  <button
+                    type="submit"
+                    className="w-full h-10 bg-amber-300 rounded-md font-medium text-black hover:bg-amber-400 transition"
+                  >
                     Book Visit
-                  </button>
-                  <button className="flex-1 h-10 bg-amber-50 rounded-md outline outline-1 outline-amber-300 font-medium text-black">
-                    Learn More
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
 
-          
-          {/* Right Side Info Box */}
           <div className="w-full lg:w-96 flex-shrink-0 flex flex-col gap-7 mt-8 lg:mt-0">
             <div className="h-auto px-6 py-6 bg-white rounded-lg shadow-sm flex flex-col gap-3">
               <h3 className="text-xl font-bold text-slate-700">
@@ -194,38 +467,34 @@ const Calender = () => {
                 </div>
               ))}
 
-              {/* Need Help Card */}
               <div className="mt-6 w-full bg-gray-300/20 rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.05)] outline outline-1 outline-offset-[-1px] outline-neutral-200 p-4 flex flex-col gap-3">
                 <h4 className="text-xl font-bold text-slate-700 font-['Quicksand']">
                   Need Help?
                 </h4>
                 <div className="flex flex-col gap-2">
-                  <div>
-                    <div className="text-black text-sm font-semibold font-['Quicksand'] leading-tight">
-                      Call us directly:
-                    </div>
-                    <div className="text-slate-500 text-sm font-semibold font-['Quicksand'] leading-tight">
-                      Monday to Friday: 7:00 AM - 6:00 PM
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-black text-sm font-semibold font-['Quicksand'] leading-tight">
-                      Email:
-                    </span>
-                    <span className="text-slate-500 text-sm font-medium font-['Quicksand']">
-                      info@sandtonprep.edu.ng
-                    </span>
-                  </div>
-                  <div className="text-slate-500 text-xs font-semibold font-['Quicksand'] leading-tight">
+                  <div>Call us directly:</div>
+                  <div className="text-slate-500 text-sm font-semibold font-['Quicksand'] leading-tight">
                     Monday to Friday: 7:00 AM - 6:00 PM
                   </div>
                 </div>
-                <button className="mt-2 w-full h-9 bg-amber-200 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-black text-xs font-semibold font-['Quicksand']">
-                  Contact Us Instead
-                </button>
+                <div className="flex items-center gap-1">
+                  <span className="text-black text-sm font-semibold font-['Quicksand'] leading-tight">
+                    Email:
+                  </span>
+                  <span className="text-slate-500 text-sm font-medium font-['Quicksand']">
+                    info@sandtonprep.edu.ng
+                  </span>
+                </div>
+                <div className="text-slate-500 text-xs font-semibold font-['Quicksand'] leading-tight">
+                  Monday to Friday: 7:00 AM - 6:00 PM
+                </div>
+                <Link href="/contact">
+                  <button className="mt-2 w-full h-9 bg-amber-200 rounded-md outline outline-1 outline-offset-[-1px] outline-amber-300/20 text-black text-xs font-semibold font-['Quicksand'] hover:bg-amber-300 transition">
+                    Contact Us Instead
+                  </button>
+                </Link>
               </div>
 
-              {/* Parent Reviews Card and Testimonials Dynamically */}
               <div className="mt-6 w-full bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.05)] outline outline-1 outline-offset-[-1px] outline-neutral-200 p-4 flex flex-col gap-3">
                 <h4 className="text-xl font-bold text-slate-700 font-['Quicksand']">
                   Parent Reviews

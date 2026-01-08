@@ -121,35 +121,42 @@ const Curriculum = () => {
 
       {/* Info Cards on full yellow background */}
       <div className="w-full bg-yellow-300 py-10 flex justify-center gap-6 overflow-x-auto px-4">
-        {infoCards.map((card, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 w-72 sm:w-80 md:w-96 p-4 bg-white rounded-3xl shadow-md flex flex-col items-center gap-4"
-          >
-            <div className="w-20 h-20 bg-amber-300/20 rounded-full flex items-center justify-center overflow-hidden border-4 border-yellow-400">
-              <Image
-                src="https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png"
-                alt={card.title}
-                width={80}
-                height={80}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="text-gray-900 text-xl sm:text-2xl font-bold font-['Quicksand'] text-center">
-              {card.title}
-            </h3>
-            <p className="text-slate-700 text-base sm:text-lg font-medium font-['Quicksand'] text-center leading-relaxed break-words">
-              {card.desc}
-            </p>
+        {infoCards.map((card, i) => {
+          const images = [
+            "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767857594/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/Gemini_Generated_Image_7g51qs7g51qs7g51_dzi64g.png",
+            "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767858222/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/Gemini_Generated_Image_ky4u5rky4u5rky4u_n9dthy.png",
+            "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767858717/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/Image_fx_8_xqjlqx.jpg",
+          ];
+          return (
+            <div
+              key={i}
+              className="flex-shrink-0 w-72 sm:w-80 md:w-96 p-4 bg-white rounded-3xl shadow-md flex flex-col items-center gap-4"
+            >
+              <div className="w-20 h-20 bg-amber-300/20 rounded-full flex items-center justify-center overflow-hidden border-4 border-yellow-400">
+                <Image
+                  src={images[i]}
+                  alt={card.title}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover scale-110"
+                />
+              </div>
+              <h3 className="text-gray-900 text-xl sm:text-2xl font-bold font-['Quicksand'] text-center">
+                {card.title}
+              </h3>
+              <p className="text-slate-700 text-base sm:text-lg font-medium font-['Quicksand'] text-center leading-relaxed break-words">
+                {card.desc}
+              </p>
 
-            {/* three Button's works dynamically from here */}
-            <Link href={card.link}>
-              <button className="px-5 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
-                {card.btn}
-              </button>
-            </Link>
-          </div>
-        ))}
+              {/* three Button's works dynamically from here */}
+              <Link href={card.link}>
+                <button className="px-5 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow text-gray-900 font-semibold font-['Quicksand']">
+                  {card.btn}
+                </button>
+              </Link>
+            </div>
+          );
+        })}
       </div>
 
       {/* Call to Action */}
