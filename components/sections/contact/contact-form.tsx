@@ -220,8 +220,12 @@ Message: ${form.message}`);
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Address</h3>
-                  <p className="text-slate-500">1 Egbeyemi Close, Folarin Street,</p>
-                  <p className="text-slate-500">Egbeda/ Alimosho 100267, Lagos</p>
+                  <p className="text-slate-500">
+                    1 Egbeyemi Close, Folarin Street,
+                  </p>
+                  <p className="text-slate-500">
+                    Egbeda/ Alimosho 100267, Lagos
+                  </p>
                   <a
                     href="https://maps.google.com/?q=1+Egbeyemi+Close,+Folarin+Street,+Egbeda,+Lagos"
                     target="_blank"
@@ -261,7 +265,9 @@ Message: ${form.message}`);
               </h3>
               <ul className="space-y-2 text-sm text-slate-500">
                 <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                  <span className="font-semibold text-slate-700">Admissions:</span>
+                  <span className="font-semibold text-slate-700">
+                    Admissions:
+                  </span>
                   <a
                     href="mailto:admissions@sandtonprep.co.za"
                     className="hover:text-amber-600"
@@ -269,10 +275,7 @@ Message: ${form.message}`);
                     admissions@sandtonprep.co.za
                   </a>
                   <span className="hidden sm:inline">•</span>
-                  <a
-                    href="tel:+27112345680"
-                    className="hover:text-amber-600"
-                  >
+                  <a href="tel:+27112345680" className="hover:text-amber-600">
                     +27 11 234 5680
                   </a>
                 </li>
@@ -285,10 +288,7 @@ Message: ${form.message}`);
                     finance@sandtonprep.co.za
                   </a>
                   <span className="hidden sm:inline">•</span>
-                  <a
-                    href="tel:+27112345681"
-                    className="hover:text-amber-600"
-                  >
+                  <a href="tel:+27112345681" className="hover:text-amber-600">
                     +27 11 234 5681
                   </a>
                 </li>
@@ -301,15 +301,14 @@ Message: ${form.message}`);
                     info@sandtonprep.co.za
                   </a>
                   <span className="hidden sm:inline">•</span>
-                  <a
-                    href="tel:+27112345678"
-                    className="hover:text-amber-600"
-                  >
+                  <a href="tel:+27112345678" className="hover:text-amber-600">
                     +27 11 234 5678
                   </a>
                 </li>
                 <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                  <span className="font-semibold text-slate-700">Principal:</span>
+                  <span className="font-semibold text-slate-700">
+                    Principal:
+                  </span>
                   <a
                     href="mailto:principal@sandtonprep.co.za"
                     className="hover:text-amber-600"
@@ -317,10 +316,7 @@ Message: ${form.message}`);
                     principal@sandtonprep.co.za
                   </a>
                   <span className="hidden sm:inline">•</span>
-                  <a
-                    href="tel:+27112345682"
-                    className="hover:text-amber-600"
-                  >
+                  <a href="tel:+27112345682" className="hover:text-amber-600">
                     +27 11 234 5682
                   </a>
                 </li>
