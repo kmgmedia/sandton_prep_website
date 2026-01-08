@@ -106,7 +106,7 @@ const Calender = () => {
     return isKnownDomain || /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(domain);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const missing = requiredFields
@@ -133,29 +133,62 @@ const Calender = () => {
 
     setMissingFields([]);
 
-    const email = "admissions@sandtonprep.edu.ng";
-    const subject = encodeURIComponent("New Visit Booking Request");
-    const body = encodeURIComponent(
-      `First Name: ${form.firstName}
-Last Name: ${form.lastName}
-Email: ${form.email}
-Phone: ${form.phone}
-Child Name: ${form.childName || "N/A"}
-Child Age: ${form.childAge}
-Current School: ${form.school || "N/A"}
-Preferred Date: ${form.date}
-Preferred Time: ${selectedTime}
-Adults Attending: ${form.adults}
-Special Requirements: ${form.notes || "N/A"}`
-    );
+    try {
+      // Submit to API route
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          childName: form.childName,
+          childAge: form.childAge,
+          currentSchool: form.school,
+          preferredDate: form.date,
+          preferredTime: selectedTime,
+          adultsAttending: parseInt(form.adults),
+          specialRequirements: form.notes,
+        }),
+      });
 
-    // Show success modal
-    setShowSuccess(true);
+      const data = await response.json();
 
-    // Open email client after a brief delay
-    setTimeout(() => {
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    }, 500);
+      if (!response.ok) {
+        // Handle errors
+        if (response.status === 429) {
+          alert('Too many requests. Please try again in a few minutes.');
+        } else if (data.details) {
+          alert(`Validation errors:\n${data.details.join('\n')}`);
+        } else {
+          alert(data.error || 'Failed to submit booking. Please try again.');
+        }
+        return;
+      }
+
+      // Show success modal and reset form
+      setShowSuccess(true);
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        childName: "",
+        childAge: "",
+        school: "",
+        date: "",
+        adults: "",
+        notes: "",
+      });
+      setSelectedTime("");
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please check your connection and try again.');
+    }
   };
 
   return (

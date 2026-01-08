@@ -87,7 +87,7 @@ const Contactus = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const missing = requiredFields
@@ -107,20 +107,52 @@ const Contactus = () => {
     }
 
     setMissingFields([]);
-    setShowSuccess(true);
 
-    const email = "info@sandtonprep.co.za";
-    const subject = encodeURIComponent("New Contact Message");
-    const body = encodeURIComponent(`First Name: ${form.firstName}
-Last Name: ${form.lastName}
-Email: ${form.email}
-Phone: ${form.phone || "N/A"}
-Child Age: ${form.childAge || "N/A"}
-Message: ${form.message}`);
+    try {
+      // Submit to API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          childAge: form.childAge,
+          message: form.message,
+        }),
+      });
 
-    setTimeout(() => {
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    }, 500);
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle errors
+        if (response.status === 429) {
+          alert("Too many requests. Please try again in a few minutes.");
+        } else if (data.details) {
+          alert(`Validation errors:\n${data.details.join("\n")}`);
+        } else {
+          alert(data.error || "Failed to submit message. Please try again.");
+        }
+        return;
+      }
+
+      // Show success modal and reset form
+      setShowSuccess(true);
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        childAge: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Network error. Please check your connection and try again.");
+    }
   };
 
   return (
