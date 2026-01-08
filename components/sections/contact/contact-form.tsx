@@ -1,13 +1,135 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
+import Link from "next/link";
+import SubmissionSuccess from "@/components/features/booking/submission-success";
 import Maps from "./maps";
 import Footer from "../shared/footer";
 import SubFooter from "../about/sub-footer";
 
 const Contactus = () => {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    childAge: "",
+    message: "",
+  });
+
+  const [missingFields, setMissingFields] = useState<string[]>([]);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const fieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const requiredFields = [
+    { key: "firstName", label: "First Name" },
+    { key: "lastName", label: "Last Name" },
+    { key: "email", label: "Email" },
+    { key: "message", label: "Message" },
+  ];
+
+  const handleChange = (key: string, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const inputErrorClass = (key: string) =>
+    missingFields.includes(key)
+      ? "placeholder:text-red-500 outline outline-1 outline-red-400 text-red-600"
+      : "";
+
+  const labelErrorClass = (key: string) =>
+    missingFields.includes(key) ? "text-red-600" : "";
+
+  const isValidEmail = (email: string): boolean => {
+    if (!email) return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return false;
+
+    const domain = email.split("@")[1].toLowerCase();
+    const validDomains = [
+      "gmail.com",
+      "yahoo.com",
+      "yahoo.co.uk",
+      "yahoo.co.in",
+      "outlook.com",
+      "hotmail.com",
+      "aol.com",
+      "icloud.com",
+      "mail.com",
+      "protonmail.com",
+      "tutanota.com",
+      "yandex.com",
+      "zoho.com",
+      "mailbox.org",
+      "fastmail.com",
+      "gmx.com",
+      "live.com",
+      "msn.com",
+      "edu.ng",
+      "gov.ng",
+      "co.za",
+    ];
+
+    const commonTypos: { [key: string]: string } = {
+      "gmai.com": "gmail.com",
+      "gmil.com": "gmail.com",
+      "gmal.com": "gmail.com",
+      "yahooo.com": "yahoo.com",
+      "yaho.com": "yahoo.com",
+      "outlok.com": "outlook.com",
+      "hotmil.com": "hotmail.com",
+    };
+
+    if (commonTypos[domain]) return false;
+
+    return (
+      validDomains.includes(domain) || /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(domain)
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const missing = requiredFields
+      .filter((f) => !form[f.key as keyof typeof form])
+      .map((f) => f.key);
+
+    const invalidEmail =
+      form.email && !isValidEmail(form.email) ? ["email"] : [];
+    const errors = [...missing, ...invalidEmail];
+
+    setMissingFields(errors);
+    if (errors.length) {
+      const first = errors[0];
+      const el = fieldRefs.current[first];
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    setMissingFields([]);
+    setShowSuccess(true);
+
+    const email = "info@sandtonprep.co.za";
+    const subject = encodeURIComponent("New Contact Message");
+    const body = encodeURIComponent(`First Name: ${form.firstName}
+Last Name: ${form.lastName}
+Email: ${form.email}
+Phone: ${form.phone || "N/A"}
+Child Age: ${form.childAge || "N/A"}
+Message: ${form.message}`);
+
+    setTimeout(() => {
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    }, 500);
+  };
+
   return (
     <>
+      <SubmissionSuccess
+        isOpen={showSuccess}
+        onClose={() => setShowSuccess(false)}
+        variant="contact"
+      />
       {/* Top Section */}
       <section className="bg-slate-50 py-16 sm:py-20 md:py-24 px-4 sm:px-6 flex justify-center">
         <div className="max-w-6xl w-full text-center">
@@ -42,13 +164,24 @@ const Contactus = () => {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Phone</h3>
-                  <p className="text-slate-500">+234 915 911 6332</p>
-                  <p className="text-slate-500">
+                  <a
+                    href="tel:+2349159116332"
+                    className="text-slate-500 hover:text-amber-600 transition"
+                  >
+                    +234 915 911 6332
+                  </a>
+                  <a
+                    href="tel:+2349159116203"
+                    className="text-slate-500 hover:text-amber-600 transition"
+                  >
                     +234 915 911 6203 (Emergency)
-                  </p>
-                  <span className="text-amber-500 text-xs font-semibold mt-2">
+                  </a>
+                  <a
+                    href="tel:+2349159116332"
+                    className="text-amber-500 text-xs font-semibold mt-2 hover:text-amber-600"
+                  >
                     Call us
-                  </span>
+                  </a>
                 </div>
               </div>
 
@@ -59,11 +192,24 @@ const Contactus = () => {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Email</h3>
-                  <p className="text-slate-500">info@sandtonprep.co.za</p>
-                  <p className="text-slate-500">admissions@sandtonprep.co.za</p>
-                  <span className="text-amber-500 text-xs font-semibold mt-2">
+                  <a
+                    href="mailto:info@sandtonprep.co.za"
+                    className="text-slate-500 hover:text-amber-600 transition"
+                  >
+                    info@sandtonprep.co.za
+                  </a>
+                  <a
+                    href="mailto:admissions@sandtonprep.co.za"
+                    className="text-slate-500 hover:text-amber-600 transition"
+                  >
+                    admissions@sandtonprep.co.za
+                  </a>
+                  <a
+                    href="mailto:info@sandtonprep.co.za"
+                    className="text-amber-500 text-xs font-semibold mt-2 hover:text-amber-600"
+                  >
                     Send email
-                  </span>
+                  </a>
                 </div>
               </div>
 
@@ -74,15 +220,16 @@ const Contactus = () => {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold text-slate-700">Address</h3>
-                  <p className="text-slate-500">
-                    1 Egbeyemi Close, Folarin Street,
-                  </p>
-                  <p className="text-slate-500">
-                    Egbeda/ Alimosho 100267, Lagos
-                  </p>
-                  <span className="text-amber-500 text-xs font-semibold mt-2">
+                  <p className="text-slate-500">1 Egbeyemi Close, Folarin Street,</p>
+                  <p className="text-slate-500">Egbeda/ Alimosho 100267, Lagos</p>
+                  <a
+                    href="https://maps.google.com/?q=1+Egbeyemi+Close,+Folarin+Street,+Egbeda,+Lagos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-500 text-xs font-semibold mt-2 hover:text-amber-600"
+                  >
                     Get directions
-                  </span>
+                  </a>
                 </div>
               </div>
 
@@ -97,9 +244,12 @@ const Contactus = () => {
                   </h3>
                   <p className="text-slate-500">Mon–Fri: 6:30 AM - 6:00 PM</p>
                   <p className="text-slate-500">Sat: 8:00 AM - 1:00 PM</p>
-                  <span className="text-amber-500 text-xs font-semibold mt-2">
-                    View schedule
-                  </span>
+                  <Link
+                    href="/bookpage"
+                    className="text-amber-500 text-xs font-semibold mt-2 hover:text-amber-600"
+                  >
+                    Book a Visit
+                  </Link>
                 </div>
               </div>
             </div>
@@ -110,25 +260,69 @@ const Contactus = () => {
                 Department Contacts
               </h3>
               <ul className="space-y-2 text-sm text-slate-500">
-                <li>
-                  <span className="font-semibold text-slate-700">
-                    Admissions:
-                  </span>{" "}
-                  admissions@sandtonprep.co.za • +27 11 234 5680
+                <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <span className="font-semibold text-slate-700">Admissions:</span>
+                  <a
+                    href="mailto:admissions@sandtonprep.co.za"
+                    className="hover:text-amber-600"
+                  >
+                    admissions@sandtonprep.co.za
+                  </a>
+                  <span className="hidden sm:inline">•</span>
+                  <a
+                    href="tel:+27112345680"
+                    className="hover:text-amber-600"
+                  >
+                    +27 11 234 5680
+                  </a>
                 </li>
-                <li>
-                  <span className="font-semibold text-slate-700">Finance:</span>{" "}
-                  finance@sandtonprep.co.za • +27 11 234 5681
+                <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <span className="font-semibold text-slate-700">Finance:</span>
+                  <a
+                    href="mailto:finance@sandtonprep.co.za"
+                    className="hover:text-amber-600"
+                  >
+                    finance@sandtonprep.co.za
+                  </a>
+                  <span className="hidden sm:inline">•</span>
+                  <a
+                    href="tel:+27112345681"
+                    className="hover:text-amber-600"
+                  >
+                    +27 11 234 5681
+                  </a>
                 </li>
-                <li>
-                  <span className="font-semibold text-slate-700">General:</span>{" "}
-                  info@sandtonprep.co.za • +27 11 234 5678
+                <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <span className="font-semibold text-slate-700">General:</span>
+                  <a
+                    href="mailto:info@sandtonprep.co.za"
+                    className="hover:text-amber-600"
+                  >
+                    info@sandtonprep.co.za
+                  </a>
+                  <span className="hidden sm:inline">•</span>
+                  <a
+                    href="tel:+27112345678"
+                    className="hover:text-amber-600"
+                  >
+                    +27 11 234 5678
+                  </a>
                 </li>
-                <li>
-                  <span className="font-semibold text-slate-700">
-                    Principal:
-                  </span>{" "}
-                  principal@sandtonprep.co.za • +27 11 234 5682
+                <li className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <span className="font-semibold text-slate-700">Principal:</span>
+                  <a
+                    href="mailto:principal@sandtonprep.co.za"
+                    className="hover:text-amber-600"
+                  >
+                    principal@sandtonprep.co.za
+                  </a>
+                  <span className="hidden sm:inline">•</span>
+                  <a
+                    href="tel:+27112345682"
+                    className="hover:text-amber-600"
+                  >
+                    +27 11 234 5682
+                  </a>
                 </li>
               </ul>
             </div>
@@ -140,40 +334,76 @@ const Contactus = () => {
               ✉️ Send Message
             </h3>
 
-            <form className="flex flex-col gap-5">
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
               {/* First + Last name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700">
+                <div
+                  ref={(el) => {
+                    if (el) fieldRefs.current["firstName"] = el;
+                  }}
+                >
+                  <label
+                    className={`block text-sm font-medium text-slate-700 ${labelErrorClass(
+                      "firstName"
+                    )}`}
+                  >
                     First Name *
                   </label>
                   <input
                     type="text"
                     placeholder="Your first name"
-                    className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
+                    value={form.firstName}
+                    onChange={(e) => handleChange("firstName", e.target.value)}
+                    className={`w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm ${inputErrorClass(
+                      "firstName"
+                    )}`}
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700">
+                <div
+                  ref={(el) => {
+                    if (el) fieldRefs.current["lastName"] = el;
+                  }}
+                >
+                  <label
+                    className={`block text-sm font-medium text-slate-700 ${labelErrorClass(
+                      "lastName"
+                    )}`}
+                  >
                     Last Name *
                   </label>
                   <input
                     type="text"
                     placeholder="Your last name"
-                    className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
+                    value={form.lastName}
+                    onChange={(e) => handleChange("lastName", e.target.value)}
+                    className={`w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm ${inputErrorClass(
+                      "lastName"
+                    )}`}
                   />
                 </div>
               </div>
 
               {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
+              <div
+                ref={(el) => {
+                  if (el) fieldRefs.current["email"] = el;
+                }}
+              >
+                <label
+                  className={`block text-sm font-medium text-slate-700 ${labelErrorClass(
+                    "email"
+                  )}`}
+                >
                   Email Address *
                 </label>
                 <input
                   type="email"
                   placeholder="your.email@example.com"
-                  className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
+                  value={form.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  className={`w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm ${inputErrorClass(
+                    "email"
+                  )}`}
                 />
               </div>
 
@@ -185,6 +415,8 @@ const Contactus = () => {
                 <input
                   type="tel"
                   placeholder="+234 11 xxx xxxx"
+                  value={form.phone}
+                  onChange={(e) => handleChange("phone", e.target.value)}
                   className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
                 />
               </div>
@@ -197,31 +429,33 @@ const Contactus = () => {
                 <input
                   type="text"
                   placeholder="e.g., 3 years old"
-                  className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
-                />
-              </div>
-
-              {/* Subject */}
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  placeholder="What is this regarding?"
+                  value={form.childAge}
+                  onChange={(e) => handleChange("childAge", e.target.value)}
                   className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
                 />
               </div>
 
               {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
+              <div
+                ref={(el) => {
+                  if (el) fieldRefs.current["message"] = el;
+                }}
+              >
+                <label
+                  className={`block text-sm font-medium text-slate-700 ${labelErrorClass(
+                    "message"
+                  )}`}
+                >
                   Message *
                 </label>
                 <textarea
                   rows={4}
                   placeholder="Type your message..."
-                  className="w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm"
+                  value={form.message}
+                  onChange={(e) => handleChange("message", e.target.value)}
+                  className={`w-full px-3 py-2 rounded-md bg-amber-50 border border-amber-200 text-sm ${inputErrorClass(
+                    "message"
+                  )}`}
                 />
               </div>
 
@@ -233,12 +467,14 @@ const Contactus = () => {
                 >
                   Send Message
                 </button>
-                <button
-                  type="button"
-                  className="flex-1 bg-amber-200 border border-amber-200 text-black font-medium py-2 rounded-md hover:bg-amber-300 transition"
-                >
-                  Book a Visit Instead
-                </button>
+                <Link href="/bookpage" className="flex-1">
+                  <button
+                    type="button"
+                    className="w-full bg-amber-200 border border-amber-200 text-black font-medium py-2 rounded-md hover:bg-amber-300 transition"
+                  >
+                    Book a Visit Instead
+                  </button>
+                </Link>
               </div>
             </form>
           </div>

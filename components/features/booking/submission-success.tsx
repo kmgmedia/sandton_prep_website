@@ -6,13 +6,38 @@ import Link from "next/link";
 interface SubmissionSuccessProps {
   isOpen: boolean;
   onClose: () => void;
+  variant?: "booking" | "contact";
 }
 
 const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
   isOpen,
   onClose,
+  variant = "booking",
 }) => {
   if (!isOpen) return null;
+
+  const content =
+    variant === "contact"
+      ? {
+          title: "Message Sent!",
+          body: "Thanks for reaching out to Sandton Prep. We've received your message and will get back to you shortly.",
+          bullets: [
+            "We have your message logged",
+            "Expect a reply within one business day",
+            "For urgent matters, please call our office",
+          ],
+          email: "info@sandtonprep.co.za",
+        }
+      : {
+          title: "Request Submitted!",
+          body: "Thank you for scheduling a visit to Sandton Prep. Your booking request has been successfully submitted.",
+          bullets: [
+            "We will receive your booking request",
+            "Our admissions team will contact you shortly",
+            "We'll confirm your visit date and time",
+          ],
+          email: "info@sandtonprep.edu.ng",
+        };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -38,13 +63,12 @@ const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
 
         {/* Title */}
         <h2 className="text-2xl font-bold text-slate-900 mb-2 font-['Quicksand']">
-          Request Submitted!
+          {content.title}
         </h2>
 
         {/* Message */}
         <p className="text-slate-600 text-sm leading-relaxed mb-2 font-['Quicksand']">
-          Thank you for scheduling a visit to Sandton Prep. Your booking request
-          has been successfully submitted.
+          {content.body}
         </p>
 
         {/* Additional Info */}
@@ -53,18 +77,16 @@ const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
             What happens next?
           </p>
           <ul className="text-slate-600 text-xs font-['Quicksand'] space-y-1 text-left">
-            <li>✓ We will receive your booking request</li>
-            <li>✓ Our admissions team will contact you shortly</li>
-            <li>✓ We'll confirm your visit date and time</li>
+            {content.bullets.map((item, idx) => (
+              <li key={idx}>✓ {item}</li>
+            ))}
           </ul>
         </div>
 
         {/* Contact Info */}
         <div className="mb-6 text-xs text-slate-500 font-['Quicksand']">
           <p className="mb-1">If you have questions, reach out to us:</p>
-          <p className="font-semibold text-slate-700">
-            info@sandtonprep.edu.ng
-          </p>
+          <p className="font-semibold text-slate-700">{content.email}</p>
         </div>
 
         {/* Buttons */}
