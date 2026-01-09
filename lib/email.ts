@@ -1,6 +1,10 @@
 import { Resend } from "resend";
+import * as Sentry from "@sentry/nextjs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend only if API key is available (for runtime, not build time)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 interface SendEmailParams {
   to: string;
@@ -9,12 +13,69 @@ interface SendEmailParams {
   replyTo?: string;
 }
 
+/**
+ * Send email with automatic retry on failure
+ * Retries up to maxAttempts times with exponential backoff
+ */
+export async function sendEmailWithRetry(
+  params: SendEmailParams,
+  maxAttempts: number = 3
+) {
+  if (!resend) {
+    console.error("Resend API key not configured");
+    return { success: false, error: "Email service not configured" };
+  }
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const data = await resend.emails.send({
+        from: `Sandton Prep <${process.env.SCHOOL_EMAIL}>`,
+        to: [params.to],
+        subject: params.subject,
+        html: params.html,
+        replyTo: params.replyTo || process.env.SCHOOL_EMAIL,
+      });
+
+      return { success: true, data, attempts: attempt };
+    } catch (error) {
+      const isLastAttempt = attempt === maxAttempts;
+      const errorMsg = error instanceof Error ? error.message : String(error);
+
+      if (isLastAttempt) {
+        console.error(`Email failed after ${maxAttempts} attempts:`, errorMsg);
+        Sentry.captureException(error, {
+          tags: { type: "email_failure", to: params.to },
+          extra: { attempts: maxAttempts },
+        });
+        return { success: false, error, attempts: attempt };
+      }
+
+      // Exponential backoff: 1s, 2s, 4s
+      const delayMs = Math.pow(2, attempt - 1) * 1000;
+      console.warn(
+        `Email attempt ${attempt}/${maxAttempts} failed. Retrying in ${delayMs}ms...`
+      );
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+  }
+
+  return { success: false, error: "All retry attempts exhausted" };
+}
+
+/**
+ * Simple send (no retry) - for immediate sending if needed
+ */
 export async function sendEmail({
   to,
   subject,
   html,
   replyTo,
 }: SendEmailParams) {
+  if (!resend) {
+    console.error("Resend API key not configured");
+    return { success: false, error: "Email service not configured" };
+  }
+
   try {
     const data = await resend.emails.send({
       from: `Sandton Prep <${process.env.SCHOOL_EMAIL}>`,
@@ -27,6 +88,7 @@ export async function sendEmail({
     return { success: true, data };
   } catch (error) {
     console.error("Email sending failed:", error);
+    Sentry.captureException(error, { tags: { type: "email_error", to } });
     return { success: false, error };
   }
 }

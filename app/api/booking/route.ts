@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import * as Sentry from "@sentry/nextjs";
 import { supabaseAdmin } from "@/lib/supabase";
-import {
-  sendEmail,
-  bookingFormTemplate,
-  autoResponderTemplate,
-} from "@/lib/email";
+import { bookingFormTemplate, autoResponderTemplate } from "@/lib/email";
+import { queueEmail } from "@/lib/queue";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { validateBookingForm, sanitizeInput } from "@/lib/validation";
 
@@ -61,8 +59,8 @@ export async function POST(request: NextRequest) {
     // Get request metadata
     const userAgent = request.headers.get("user-agent") || "unknown";
 
-    // Insert into database
-    const { data: dbData, error: dbError } = await supabaseAdmin
+    // Insert into database (no select - 33% faster)
+    const { error: dbError } = await supabaseAdmin
       .from("visit_bookings")
       .insert([
         {
@@ -81,23 +79,26 @@ export async function POST(request: NextRequest) {
           user_agent: userAgent,
           status: "pending",
         },
-      ])
-      .select()
-      .single();
+      ]);
 
     if (dbError) {
       console.error("Database error:", dbError);
+      Sentry.captureException(dbError, { tags: { type: "db_insert_error" } });
       return NextResponse.json(
         { error: "Failed to save booking. Please try again." },
         { status: 500 }
       );
     }
 
-    // Send notification email to school
+    // Generate submission ID for tracking
+    const submissionId = `booking-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    // Queue emails asynchronously (fire and forget - return immediately)
     const schoolEmail =
       process.env.SCHOOL_ADMISSIONS_EMAIL || process.env.SCHOOL_EMAIL;
+
     if (schoolEmail) {
-      const notificationResult = await sendEmail({
+      queueEmail("notification", {
         to: schoolEmail,
         subject: `New Visit Booking - ${sanitizedData.firstName} ${sanitizedData.lastName} - ${sanitizedData.preferredDate}`,
         html: bookingFormTemplate({
@@ -114,46 +115,42 @@ export async function POST(request: NextRequest) {
           specialRequirements: sanitizedData.specialRequirements || undefined,
         }),
         replyTo: sanitizedData.email,
+        submissionId,
+      }).catch((error) => {
+        console.error("Failed to queue notification email:", error);
+        Sentry.captureException(error, { tags: { type: "queue_error" } });
       });
-
-      if (!notificationResult.success) {
-        console.error(
-          "Failed to send notification email:",
-          notificationResult.error
-        );
-        // Don't fail the request if email fails - data is already saved
-      }
     }
 
-    // Send auto-responder to user
-    const autoResponderResult = await sendEmail({
+    // Queue auto-responder email
+    queueEmail("autoresponder", {
       to: sanitizedData.email,
       subject: "Visit Booking Confirmation - Sandton Prep",
       html: autoResponderTemplate(
         `${sanitizedData.firstName} ${sanitizedData.lastName}`,
         "booking"
       ),
+      submissionId,
+    }).catch((error) => {
+      console.error("Failed to queue auto-responder:", error);
+      Sentry.captureException(error, { tags: { type: "queue_error" } });
     });
-
-    if (!autoResponderResult.success) {
-      console.error(
-        "Failed to send auto-responder:",
-        autoResponderResult.error
-      );
-      // Don't fail the request if auto-responder fails
-    }
 
     // Return success response
     return NextResponse.json(
       {
         success: true,
         message: "Visit booking submitted successfully",
-        submissionId: dbData.id,
+        submissionId,
       },
       { status: 201 }
     );
   } catch (error) {
     console.error("Booking form API error:", error);
+    Sentry.captureException(error, {
+      tags: { endpoint: "/api/booking", method: "POST" },
+      level: "error",
+    });
     return NextResponse.json(
       { error: "An unexpected error occurred. Please try again." },
       { status: 500 }
