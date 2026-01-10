@@ -9,7 +9,23 @@ const Calender = () => {
   const [missingFields, setMissingFields] = useState<string[]>([]);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
+
+  // Get today's date in YYYY-MM-DD format
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Check if date is a weekday (Monday-Friday)
+  const isWeekday = (dateString: string): boolean => {
+    const date = new Date(dateString);
+    const day = date.getDay();
+    return day >= 1 && day <= 5; // 0 = Sunday, 6 = Saturday
+  };
+
   // Create refs for error fields
   const fieldRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [form, setForm] = useState({
@@ -37,6 +53,15 @@ const Calender = () => {
   ];
 
   const handleChange = (key: string, value: string) => {
+    // If changing date, validate it's a weekday
+    if (key === "date" && value) {
+      if (!isWeekday(value)) {
+        alert(
+          "Please select a weekday (Monday to Friday) for your visit. Weekends are not available."
+        );
+        return; // Don't update the date if it's a weekend
+      }
+    }
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -57,7 +82,7 @@ const Calender = () => {
 
     // Check for common domain typos and validate domain format
     const domain = email.split("@")[1].toLowerCase();
-    
+
     // List of valid email domains
     const validDomains = [
       "gmail.com",
@@ -86,7 +111,7 @@ const Calender = () => {
 
     // Check if domain is in valid list or has a known structure
     const isKnownDomain = validDomains.includes(domain);
-    
+
     // Check for common typos
     const commonTypos: { [key: string]: string } = {
       "gmai.com": "gmail.com",
@@ -110,6 +135,17 @@ const Calender = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Check if selected date is a weekend
+    if (form.date && !isWeekday(form.date)) {
+      alert("Please select a weekday (Monday to Friday) for your visit.");
+      setMissingFields(["date"]);
+      const dateElement = fieldRefs.current["date"];
+      if (dateElement) {
+        dateElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+
     const missing = requiredFields
       .filter((f) => {
         if (f.key === "time") return !selectedTime;
@@ -118,7 +154,8 @@ const Calender = () => {
       .map((f) => f.key);
 
     // Validate email domain separately
-    const invalidEmail = form.email && !isValidEmail(form.email) ? ["email"] : [];
+    const invalidEmail =
+      form.email && !isValidEmail(form.email) ? ["email"] : [];
     const allErrors = [...missing, ...invalidEmail];
 
     setMissingFields(allErrors);
@@ -137,10 +174,10 @@ const Calender = () => {
 
     try {
       // Submit to API route
-      const response = await fetch('/api/booking', {
-        method: 'POST',
+      const response = await fetch("/api/booking", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstName: form.firstName,
@@ -162,11 +199,11 @@ const Calender = () => {
       if (!response.ok) {
         // Handle errors
         if (response.status === 429) {
-          alert('Too many requests. Please try again in a few minutes.');
+          alert("Too many requests. Please try again in a few minutes.");
         } else if (data.details) {
-          alert(`Validation errors:\n${data.details.join('\n')}`);
+          alert(`Validation errors:\n${data.details.join("\n")}`);
         } else {
-          alert(data.error || 'Failed to submit booking. Please try again.');
+          alert(data.error || "Failed to submit booking. Please try again.");
         }
         return;
       }
@@ -186,10 +223,9 @@ const Calender = () => {
         notes: "",
       });
       setSelectedTime("");
-      
     } catch (error) {
-      console.error('Submission error:', error);
-      alert('Network error. Please check your connection and try again.');
+      console.error("Submission error:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setIsLoading(false);
     }
@@ -394,6 +430,7 @@ const Calender = () => {
                 <input
                   type="date"
                   value={form.date}
+                  min={getTodayDate()}
                   onChange={(e) => handleChange("date", e.target.value)}
                   className={`p-3 bg-white rounded-md shadow-sm w-full ${inputErrorClass(
                     "date"
@@ -406,34 +443,34 @@ const Calender = () => {
                   if (el) fieldRefs.current["time"] = el;
                 }}
               >
-                  <label
-                    className={`text-sm font-medium text-slate-700 mt-4 ${labelErrorClass(
-                      "time"
-                    )}`}
-                  >
-                    Preferred Time *
-                  </label>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"].map(
-                      (time, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => setSelectedTime(time)}
-                          className={`w-28 h-10 px-4 py-2 rounded-md outline outline-1 outline-offset-[-1px] flex items-center justify-center text-xs font-medium transition-all cursor-pointer ${
-                            selectedTime === time
-                              ? "bg-yellow-400 outline-yellow-500 text-slate-900"
-                              : missingFields.includes("time")
+                <label
+                  className={`text-sm font-medium text-slate-700 mt-4 ${labelErrorClass(
+                    "time"
+                  )}`}
+                >
+                  Preferred Time *
+                </label>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"].map(
+                    (time, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setSelectedTime(time)}
+                        className={`w-28 h-10 px-4 py-2 rounded-md outline outline-1 outline-offset-[-1px] flex items-center justify-center text-xs font-medium transition-all cursor-pointer ${
+                          selectedTime === time
+                            ? "bg-yellow-400 outline-yellow-500 text-slate-900"
+                            : missingFields.includes("time")
                               ? "bg-amber-50 outline-red-400 text-red-600"
                               : "bg-amber-50 outline-amber-300/20 text-slate-500 hover:bg-amber-100"
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      )
-                    )}
-                  </div>
+                        }`}
+                      >
+                        {time}
+                      </button>
+                    )
+                  )}
                 </div>
+              </div>
 
               <div className="flex flex-col gap-4">
                 <div
@@ -479,9 +516,25 @@ const Calender = () => {
                   >
                     {isLoading ? (
                       <>
-                        <svg className="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin h-5 w-5 text-black"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         <span>Booking...</span>
                       </>
