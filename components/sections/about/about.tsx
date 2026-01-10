@@ -15,6 +15,10 @@ const About = () => {
     router.push("/contact");
   };
 
+  const handleBookVisit = () => {
+    router.push("/bookpage");
+  };
+
   return (
     <>
       <section className="bg-slate-50 py-16 sm:py-20 md:py-24 px-4 sm:px-6 flex justify-center">
@@ -84,7 +88,7 @@ const About = () => {
                 className="bg-white rounded-2xl shadow-md p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-2xl transition"
               >
                 <div className="bg-yellow-100 rounded-full p-4 sm:p-5 mb-3 sm:mb-4">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-yellow-400 rounded-full"></div>
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-yellow-400 rounded-full animate-pulse"></div>
                 </div>
                 <h4 className="font-bold text-gray-900 text-base sm:text-lg">
                   {item.title}
@@ -113,6 +117,7 @@ const About = () => {
             containerClass="bg-[var(--secondary-500)]"
             maxWidth="max-w-5xl"
             paddingY="py-24"
+            onPrimaryClick={handleBookVisit}
             onSecondaryClick={handleClick}
           />
         </div>

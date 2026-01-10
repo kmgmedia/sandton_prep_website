@@ -2,28 +2,36 @@ import React from "react";
 
 const team = [
   {
-    name: "Sarah Johnson",
+    name: "Esther Adebola",
     role: "Principal & Director",
-    experience: "15+ years in early childhood education",
-    qualification: "M.Ed Early Childhood, B.Ed Foundation Phase",
+    experience: "9+ years in early childhood education",
+    qualification: "",
+    imageUrl:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1768085973/Sandton%20Preparatory%20School%20Web%20Images/About%20Session/1749856746160_gsnsex.jpg",
   },
   {
     name: "Michael Chen",
     role: "Head of Curriculum",
-    experience: "12+ years in curriculum development",
-    qualification: "M.Ed Curriculum Studies, PGCE",
+    experience: "5+ years in curriculum development",
+    qualification: "",
+    imageUrl:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1768086518/Sandton%20Preparatory%20School%20Web%20Images/About%20Session/_D6A8934_mr_tunde_gfuyeuwwi_a3ytjr.png",
   },
   {
     name: "Emma Williams",
     role: "Lead Teacher - Toddlers",
     experience: "8+ years with toddler development",
-    qualification: "B.Ed Early Childhood, Montessori Certified",
+    qualification: "Diploma in Early Childhood Education",
+    imageUrl:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1768085973/Sandton%20Preparatory%20School%20Web%20Images/About%20Session/1749856746160_gsnsex.jpg",
   },
   {
     name: "David Martinez",
     role: "Creative Arts Coordinator",
     experience: "10+ years in arts education",
     qualification: "BA Fine Arts, PGCE Creative Arts",
+    imageUrl:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1768085973/Sandton%20Preparatory%20School%20Web%20Images/About%20Session/1749856746160_gsnsex.jpg",
   },
 ];
 
@@ -48,7 +56,11 @@ const Team = () => {
             >
               {/* Avatar */}
               <div className="bg-yellow-100 rounded-full p-6 mb-4">
-                <div className="w-14 h-14 bg-yellow-400 rounded-full"></div>
+                <img
+                  src={member.imageUrl}
+                  alt={member.name}
+                  className="w-14 h-14 rounded-full object-cover"
+                />
               </div>
 
               {/* Name & Role */}

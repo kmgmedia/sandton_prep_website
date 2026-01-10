@@ -103,30 +103,120 @@ const Blogpage = () => {
             />
 
             <BlogCard
-              category="Education"
-              readTime="6 min read"
-              title="Why Early Reading Habits Shape Future Success"
-              description="Learn why starting reading early can give your child lifelong learning advantages."
-              author="David Miller"
-              date="April 2, 2025"
+              category="Development"
+              readTime="5 min read"
+              title="Understanding Social Skills Development in Preschoolers"
+              description="Explore how children develop crucial social skills through play and interaction with peers."
+              author="Sarah Johnson"
+              date="March 28, 2025"
+            />
+
+            <BlogCard
+              category="Health"
+              readTime="7 min read"
+              title="Nutrition Tips for Growing Minds: What Your Child Needs"
+              description="Discover the essential nutrients that support cognitive development and learning in young children."
+              author="Dr. Michael Chen"
+              date="April 5, 2025"
+            />
+
+            <BlogCard
+              category="Activities"
+              readTime="4 min read"
+              title="Creative Art Projects to Try at Home This Weekend"
+              description="Fun and educational art activities that promote creativity and fine motor skills development."
+              author="Emma Williams"
+              date="April 8, 2025"
+            />
+
+            <BlogCard
+              category="Parenting"
+              readTime="5 min read"
+              title="Managing Screen Time: A Balanced Approach for Families"
+              description="Practical guidelines for healthy screen time habits that support your child's development."
+              author="Lisa Martinez"
+              date="April 12, 2025"
             />
 
             <BlogCard
               category="Education"
               readTime="6 min read"
-              title="Why Early Reading Habits Shape Future Success"
-              description="Learn why starting reading early can give your child lifelong learning advantages."
+              title="The Role of Music in Early Childhood Development"
+              description="How musical activities enhance language skills, memory, and emotional expression in young learners."
               author="David Miller"
-              date="April 2, 2025"
+              date="April 15, 2025"
+            />
+
+            <BlogCard
+              category="Development"
+              readTime="5 min read"
+              title="Building Emotional Intelligence from an Early Age"
+              description="Strategies to help your child recognize, understand, and manage their emotions effectively."
+              author="Sarah Johnson"
+              date="April 18, 2025"
+            />
+
+            <BlogCard
+              category="Activities"
+              readTime="4 min read"
+              title="Outdoor Play Ideas for Every Season"
+              description="Year-round activities that encourage physical development and connection with nature."
+              author="Emma Williams"
+              date="April 20, 2025"
+            />
+
+            <BlogCard
+              category="Parenting"
+              readTime="6 min read"
+              title="Fostering Independence: Age-Appropriate Responsibilities"
+              description="Learn how to encourage self-reliance and confidence through developmentally suitable tasks."
+              author="Dr. Michael Chen"
+              date="April 22, 2025"
             />
 
             <BlogCard
               category="Education"
+              readTime="5 min read"
+              title="STEM Activities for Curious Little Minds"
+              description="Simple science and math activities that spark curiosity and critical thinking skills."
+              author="Lisa Martinez"
+              date="April 25, 2025"
+            />
+
+            <BlogCard
+              category="Health"
               readTime="6 min read"
-              title="Why Early Reading Habits Shape Future Success"
-              description="Learn why starting reading early can give your child lifelong learning advantages."
+              title="Sleep Routines: The Foundation of Learning Readiness"
+              description="Understanding the connection between quality sleep and your child's ability to learn and grow."
+              author="Dr. Michael Chen"
+              date="April 28, 2025"
+            />
+
+            <BlogCard
+              category="Activities"
+              readTime="5 min read"
+              title="Rainy Day Indoor Activities That Inspire Learning"
+              description="Creative ways to keep children engaged and learning when outdoor play isn't possible."
+              author="Emma Williams"
+              date="May 1, 2025"
+            />
+
+            <BlogCard
+              category="Parenting"
+              readTime="7 min read"
+              title="Positive Discipline Techniques for Young Children"
+              description="Effective strategies to guide behavior while building trust and respect with your child."
+              author="Sarah Johnson"
+              date="May 5, 2025"
+            />
+
+            <BlogCard
+              category="Education"
+              readTime="5 min read"
+              title="Language Development Milestones: What to Expect"
+              description="A guide to understanding normal language development stages and supporting your child's communication."
               author="David Miller"
-              date="April 2, 2025"
+              date="May 8, 2025"
             />
           </div>
           <div className="w-full mt-16 flex justify-center items-center">

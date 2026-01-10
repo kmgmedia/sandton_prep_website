@@ -1,11 +1,21 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import Classcards from "./class-cards";
 import SubFooter from "../about/sub-footer";
 import Footer from "../shared/footer";
 
 const Classpage = () => {
+  const router = useRouter();
+
+  const handleScheduleVisit = () => {
+    router.push("/bookpage");
+  };
+
+  const handleGetInfo = () => {
+    router.push("/contact");
+  };
   return (
     <>
       {/* Top Section */}
@@ -24,20 +34,21 @@ const Classpage = () => {
           </p>
 
           {/* CTA Button */}
-          <div
+          <button
+            onClick={handleScheduleVisit}
             data-badge="false"
             data-icon="false"
             data-size="56"
             data-state="Focused"
             data-type="Secondary"
-            className="h-14 px-6 py-3 bg-yellow-300 rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.22)] inline-flex justify-center items-center gap-2.5 overflow-hidden"
+            className="h-14 px-6 py-3 bg-yellow-300 rounded-[10px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.22)] inline-flex justify-center items-center gap-2.5 overflow-hidden hover:bg-yellow-400 transition cursor-pointer"
           >
             <div className="flex justify-start items-center gap-2">
               <div className="text-blue-950 text-lg font-semibold font-['Quicksand']">
-                Book A Visit to See Classes
+                Schedule a Visit
               </div>
             </div>
-          </div>
+          </button>
         </div>
       </section>
 
@@ -244,6 +255,8 @@ const Classpage = () => {
         containerClass="bg-[var(--secondary-500)]"
         maxWidth="max-w-5xl"
         paddingY="py-24"
+        onPrimaryClick={handleScheduleVisit}
+        onSecondaryClick={handleGetInfo}
       />
       {/* Footer Section */}
       <div className="mt-24">

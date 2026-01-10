@@ -14,6 +14,20 @@ const EventPage = () => {
     router.push("/contact");
   };
 
+  const handleNavigation = (label: string) => {
+    switch (label) {
+      case "Read our Blog":
+        router.push("/blog");
+        break;
+      case "Explore Classes":
+        router.push("/classes");
+        break;
+      case "Book a Visit":
+        router.push("/bookpage");
+        break;
+    }
+  };
+
   return (
     <>
       {/* Top Section */}
@@ -95,12 +109,12 @@ const EventPage = () => {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+      <section className="pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6">
         <div>
           <SelectionBtn />
         </div>
 
-        <div className="w-full flex justify-center items-center px-4 py-10">
+        <div className="w-full flex justify-center items-center px-4">
           <div className="max-w-lg flex flex-col justify-start items-center gap-2 text-center">
             <div className="text-slate-700 text-2xl sm:text-3xl md:text-4xl font-bold font-['Quicksand'] leading-snug sm:leading-[44px] md:leading-[56px]">
               Upcoming Events list
@@ -177,6 +191,71 @@ const EventPage = () => {
               detailsButtonText="Details"
             />
           </div>
+
+          <div className="w-full max-w-[480px]">
+            <EventCard
+              categoryLabel="Cultural"
+              title="International Food Festival"
+              description="Celebrate diversity with food, music, and cultural performances from around the world."
+              classroomInfo="Main Hall"
+              ageInfo="All Ages"
+              dateInfo="June 5, 2025"
+              readButtonText="Read Article"
+              detailsButtonText="Details"
+            />
+          </div>
+
+          <div className="w-full max-w-[480px]">
+            <EventCard
+              categoryLabel="Educational"
+              title="Science Fair Exhibition"
+              description="Students present their science projects and experiments in an interactive showcase."
+              classroomInfo="Science Lab & Corridor"
+              ageInfo="5-10 years"
+              dateInfo="June 12, 2025"
+              readButtonText="Read Article"
+              detailsButtonText="Details"
+            />
+          </div>
+
+          <div className="w-full max-w-[480px]">
+            <EventCard
+              categoryLabel="Creative"
+              title="Art Gallery Opening"
+              description="Exhibition of student artwork including paintings, sculptures, and digital creations."
+              classroomInfo="Art Studio"
+              ageInfo="All Ages"
+              dateInfo="June 19, 2025"
+              readButtonText="Read Article"
+              detailsButtonText="Details"
+            />
+          </div>
+
+          <div className="w-full max-w-[480px]">
+            <EventCard
+              categoryLabel="Celebration"
+              title="End of Year Concert"
+              description="A grand finale featuring performances from all classes to celebrate the school year."
+              classroomInfo="Auditorium"
+              ageInfo="All Ages"
+              dateInfo="June 28, 2025"
+              readButtonText="Read Article"
+              detailsButtonText="Details"
+            />
+          </div>
+
+          <div className="w-full max-w-[480px]">
+            <EventCard
+              categoryLabel="Community"
+              title="Summer Reading Challenge"
+              description="Kick off our summer reading program with fun activities and reading goals for all age groups."
+              classroomInfo="Library"
+              ageInfo="All Ages"
+              dateInfo="July 3, 2025"
+              readButtonText="Read Article"
+              detailsButtonText="Details"
+            />
+          </div>
         </div>
         <div className="w-full mt-4 flex justify-center items-center">
           {/* Load More Posts Button */}
@@ -229,14 +308,15 @@ const EventPage = () => {
             <div className="flex flex-row flex-wrap justify-center items-center gap-4">
               {["Read our Blog", "Explore Classes", "Book a Visit"].map(
                 (label) => (
-                  <div
+                  <button
                     key={label}
-                    className="w-45 px-4 py-3 bg-yellow-300 rounded-[10px] flex justify-center items-center hover:scale-105 transition-transform"
+                    onClick={() => handleNavigation(label)}
+                    className="w-45 px-4 py-3 bg-yellow-300 rounded-[10px] flex justify-center items-center hover:scale-105 hover:bg-yellow-400 transition-transform cursor-pointer"
                   >
                     <span className="text-blue-950 text-lg font-semibold font-['Quicksand'] text-center">
                       {label}
                     </span>
-                  </div>
+                  </button>
                 )
               )}
             </div>

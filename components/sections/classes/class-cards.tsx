@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Clock, Star, User2Icon } from "lucide-react";
-
 
 const ClassCard = ({
   title = "Toddler Class",
@@ -22,8 +22,15 @@ const ClassCard = ({
   secondaryBtnText = "Visit First",
   containerClass = "bg-amber-50/60",
 }) => {
+  const router = useRouter();
 
-  
+  const handleBookClass = () => {
+    router.push("/contact");
+  };
+
+  const handleVisitFirst = () => {
+    router.push("/bookpage");
+  };
   return (
     <div
       className={`w-full max-w-[453px] p-4 ${containerClass} rounded-xl outline outline-[1.6px] outline-zinc-300 flex justify-center`}
@@ -105,10 +112,16 @@ const ClassCard = ({
 
         {/* Buttons */}
         <div className="flex gap-3 mt-4">
-          <button className="flex-1 h-10 bg-[var(--secondary-500)] rounded-md flex justify-center items-center text-black font-bold font-['Quicksand']">
+          <button
+            onClick={handleBookClass}
+            className="flex-1 h-10 bg-[var(--secondary-500)] rounded-md flex justify-center items-center text-black font-bold font-['Quicksand'] hover:bg-yellow-400 transition cursor-pointer"
+          >
             {primaryBtnText}
           </button>
-          <button className="w-24 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 flex justify-center items-center text-black text-sm font-medium font-['Inter']">
+          <button
+            onClick={handleVisitFirst}
+            className="w-24 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 flex justify-center items-center text-black text-sm font-medium font-['Inter'] hover:bg-amber-300 transition cursor-pointer"
+          >
             {secondaryBtnText}
           </button>
         </div>
