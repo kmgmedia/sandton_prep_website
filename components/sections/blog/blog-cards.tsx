@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 interface BlogCardProps {
   category: string;
@@ -9,7 +10,7 @@ interface BlogCardProps {
   description: string;
   author: string;
   date: string;
-  onClick?: () => void;
+  slug: string;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -19,7 +20,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   description,
   author,
   date,
-  onClick,
+  slug,
 }) => {
   return (
     <div className="p-2.5 bg-neutral-100 rounded-xl outline outline-[1.5px] outline-zinc-300 flex justify-center items-center">
@@ -58,12 +59,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
           </div>
 
           {/* Button */}
-          <button
-            onClick={onClick}
-            className="w-full h-10 bg-amber-300 rounded-md outline outline-1 outline-amber-300/20 text-black text-base font-bold font-['Quicksand'] hover:bg-amber-400 transition"
+          <Link
+            href={`/blog/${slug}`}
+            className="w-full h-10 bg-amber-300 rounded-md outline outline-1 outline-amber-300/20 text-black text-base font-bold font-['Quicksand'] hover:bg-amber-400 transition flex items-center justify-center"
           >
             Read Article
-          </button>
+          </Link>
         </div>
       </div>
     </div>
