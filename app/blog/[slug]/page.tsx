@@ -84,12 +84,14 @@ export default function BlogArticlePage({
 
       {/* Article Content */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div 
+        <div
           className="article-content text-slate-700 font-['Quicksand'] text-lg leading-relaxed space-y-6"
           dangerouslySetInnerHTML={{ __html: article.content || "" }}
         />
-        
-        <style dangerouslySetInnerHTML={{__html: `
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           .article-content h2 {
             font-size: 1.875rem;
             font-weight: bold;
@@ -119,7 +121,9 @@ export default function BlogArticlePage({
             font-weight: 700;
             color: #1e293b;
           }
-        `}} />
+        `,
+          }}
+        />
       </article>
 
       {/* Related Articles or CTA */}
