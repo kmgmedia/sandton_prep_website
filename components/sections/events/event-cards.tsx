@@ -60,7 +60,7 @@ const EventCard: React.FC<CardProps> = ({
             {readButtonText}
           </button>
 
-          <button className="flex-1 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 text-black text-sm sm:text-base font-medium font-['Inter'] hover:bg-amber-300 transition">
+          <button className="flex-1 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 text-black text-sm sm:text-base font-medium hover:bg-amber-300 transition">
             {detailsButtonText}
           </button>
         </div>

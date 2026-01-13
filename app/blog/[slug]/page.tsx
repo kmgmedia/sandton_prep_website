@@ -1,13 +1,18 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogBySlug } from "@/lib/blog-data";
+import { use } from "react";
+import Footer from "@/components/sections/shared/footer";
 
 export default function BlogArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const article = getBlogBySlug(params.slug);
+  const { slug } = use(params);
+  const article = getBlogBySlug(slug);
 
   if (!article) {
     notFound();
@@ -79,39 +84,42 @@ export default function BlogArticlePage({
 
       {/* Article Content */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="prose prose-slate max-w-none">
-          {article.content ? (
-            <div
-              className="text-slate-700 font-['Quicksand'] leading-relaxed space-y-6"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
-          ) : (
-            <div className="text-slate-700 font-['Quicksand'] leading-relaxed space-y-6">
-              <p>
-                This is a placeholder for the full article content. In a real
-                application, you would fetch this content from a CMS, database,
-                or markdown files.
-              </p>
-              <p>
-                <strong>Article: {article.title}</strong>
-              </p>
-              <p>{article.description}</p>
-              <h2 className="text-2xl font-bold mt-8 mb-4">Key Takeaways</h2>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>
-                  Important point related to {article.category.toLowerCase()}
-                </li>
-                <li>Practical tips for parents and educators</li>
-                <li>Evidence-based research and insights</li>
-              </ul>
-              <h2 className="text-2xl font-bold mt-8 mb-4">Conclusion</h2>
-              <p>
-                Thank you for reading. Stay tuned for more insights and updates
-                from Sandton Prep.
-              </p>
-            </div>
-          )}
-        </div>
+        <div 
+          className="article-content text-slate-700 font-['Quicksand'] text-lg leading-relaxed space-y-6"
+          dangerouslySetInnerHTML={{ __html: article.content || "" }}
+        />
+        
+        <style dangerouslySetInnerHTML={{__html: `
+          .article-content h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #334155;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Quicksand', sans-serif;
+          }
+          
+          .article-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+          }
+          
+          .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+          }
+          
+          .article-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.75;
+          }
+          
+          .article-content strong {
+            font-weight: 700;
+            color: #1e293b;
+          }
+        `}} />
       </article>
 
       {/* Related Articles or CTA */}
@@ -128,6 +136,9 @@ export default function BlogArticlePage({
           </Link>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

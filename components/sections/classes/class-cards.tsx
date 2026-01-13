@@ -120,7 +120,7 @@ const ClassCard = ({
           </button>
           <button
             onClick={handleVisitFirst}
-            className="w-24 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 flex justify-center items-center text-black text-sm font-medium font-['Inter'] hover:bg-amber-300 transition cursor-pointer"
+            className="w-24 h-10 bg-amber-200 rounded-md outline outline-1 outline-amber-300/20 flex justify-center items-center text-black text-sm font-medium hover:bg-amber-300 transition cursor-pointer"
           >
             {secondaryBtnText}
           </button>
