@@ -29,7 +29,7 @@ export async function sendEmailWithRetry(
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const data = await resend.emails.send({
-        from: `Sandton Prep <${process.env.SCHOOL_EMAIL}>`,
+        from: "Sandton Prep <onboarding@resend.dev>",
         to: [params.to],
         subject: params.subject,
         html: params.html,
@@ -78,7 +78,7 @@ export async function sendEmail({
 
   try {
     const data = await resend.emails.send({
-      from: `Sandton Prep <${process.env.SCHOOL_EMAIL}>`,
+      from: "Sandton Prep <onboarding@resend.dev>",
       to: [to],
       subject,
       html,
