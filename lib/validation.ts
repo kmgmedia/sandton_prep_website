@@ -71,10 +71,13 @@ export function validatePhone(phone: string): {
   valid: boolean;
   error?: string;
 } {
+  // Remove spaces, dashes, and parentheses for validation
+  const cleanedPhone = phone.replace(/[\s\-\(\)]/g, "");
+
   // Check if phone starts with + followed by numbers, or just numbers
   const phoneRegex = /^\+?\d+$/;
 
-  if (!phoneRegex.test(phone)) {
+  if (!phoneRegex.test(cleanedPhone)) {
     return {
       valid: false,
       error:
@@ -83,7 +86,7 @@ export function validatePhone(phone: string): {
   }
 
   // Remove the + sign for length validation
-  const digits = phone.replace(/\+/g, "");
+  const digits = cleanedPhone.replace(/\+/g, "");
 
   // Phone numbers should have at least 9 digits and at most 15 (international standard)
   if (digits.length < 9 || digits.length > 15) {
