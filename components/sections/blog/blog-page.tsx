@@ -159,15 +159,20 @@ const Blogpage = () => {
 
             {/* Single line row for cards */}
             <div className="flex flex-row flex-wrap justify-center items-center gap-4">
-              {["Upcoming Event", "Our Classes", "Contact Us"].map((label) => (
-                <div
-                  key={label}
+              {[
+                { label: "Upcoming Event", href: "/events" },
+                { label: "Our Classes", href: "/classes" },
+                { label: "Contact Us", href: "/contact" },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="w-45 px-4 py-3 bg-yellow-300 rounded-[10px] flex justify-center items-center hover:scale-105 transition-transform"
                 >
                   <span className="text-blue-950 text-lg font-semibold font-['Quicksand'] text-center">
-                    {label}
+                    {item.label}
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
