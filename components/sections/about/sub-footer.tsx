@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 
 type SubFooterProps = {
   heading?: string;
@@ -11,8 +12,10 @@ type SubFooterProps = {
   containerClass?: string;
   maxWidth?: string;
   paddingY?: string;
-  onPrimaryClick?: () => void;    // <-- add this
-  onSecondaryClick?: () => void;  // <-- add this
+  onPrimaryClick?: () => void;
+  onSecondaryClick?: () => void;
+  primaryBtnLink?: string;
+  secondaryBtnLink?: string;
 };
 
 const SubFooter = ({
@@ -31,7 +34,27 @@ const SubFooter = ({
   paddingY = "py-24",
   onPrimaryClick,
   onSecondaryClick,
+  primaryBtnLink = "/bookpage",
+  secondaryBtnLink = "/classes",
 }: SubFooterProps) => {
+  const router = useRouter();
+
+  const handlePrimaryClick = () => {
+    if (onPrimaryClick) {
+      onPrimaryClick();
+    } else {
+      router.push(primaryBtnLink);
+    }
+  };
+
+  const handleSecondaryClick = () => {
+    if (onSecondaryClick) {
+      onSecondaryClick();
+    } else {
+      router.push(secondaryBtnLink);
+    }
+  };
+
   return (
     <div
       className={`w-full ${containerClass} ${paddingY} mt-12 flex justify-center`}
@@ -52,13 +75,13 @@ const SubFooter = ({
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <button
-            onClick={onPrimaryClick}
+            onClick={handlePrimaryClick}
             className="px-6 py-3 rounded-lg border-2 border-[var(--secondary-300)] text-blue-950 font-semibold text-lg font-['Quicksand'] hover:bg-blue-50 transition"
           >
             {primaryBtnText}
           </button>
           <button
-            onClick={onSecondaryClick}
+            onClick={handleSecondaryClick}
             className="px-6 py-3 rounded-lg bg-neutral-100 shadow text-gray-900 font-semibold text-lg font-['Quicksand'] hover:bg-neutral-200 transition"
           >
             {secondaryBtnText}
