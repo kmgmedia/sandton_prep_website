@@ -86,9 +86,12 @@ export async function POST(request: NextRequest) {
       console.error("Error details:", JSON.stringify(dbError, null, 2));
       Sentry.captureException(dbError, { tags: { type: "db_insert_error" } });
       return NextResponse.json(
-        { 
+        {
           error: "Failed to save booking. Please try again.",
-          debug: process.env.NODE_ENV === 'development' ? dbError.message : undefined
+          debug:
+            process.env.NODE_ENV === "development"
+              ? dbError.message
+              : undefined,
         },
         { status: 500 }
       );
