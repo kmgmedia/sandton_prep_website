@@ -71,12 +71,26 @@ export function validatePhone(phone: string): {
   valid: boolean;
   error?: string;
 } {
-  // Remove all non-digit characters
-  const digits = phone.replace(/\D/g, "");
+  // Check if phone starts with + followed by numbers, or just numbers
+  const phoneRegex = /^\+?\d+$/;
 
-  // South African phone numbers are typically 10 digits (cell) or 9 digits (landline with area code)
-  if (digits.length < 9 || digits.length > 11) {
-    return { valid: false, error: "Invalid phone number format" };
+  if (!phoneRegex.test(phone)) {
+    return {
+      valid: false,
+      error:
+        "Phone number can only contain numbers and an optional + at the start",
+    };
+  }
+
+  // Remove the + sign for length validation
+  const digits = phone.replace(/\+/g, "");
+
+  // Phone numbers should have at least 9 digits and at most 15 (international standard)
+  if (digits.length < 9 || digits.length > 15) {
+    return {
+      valid: false,
+      error: "Phone number must be between 9 and 15 digits",
+    };
   }
 
   return { valid: true };
