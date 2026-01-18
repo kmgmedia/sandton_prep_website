@@ -19,7 +19,7 @@ const Bookpage = () => {
           </h2>
           <p className="text-gray-600 font-medium max-w-3xl mx-auto mb-12 sm:mb-16 text-base sm:text-lg leading-relaxed font-['Quicksand']">
             Experience our nurturing environment firsthand. Schedule <br /> your
-            personalized campus tour todays.
+            personalized campus tour today.
           </p>
         </div>
       </section>
