@@ -14,6 +14,18 @@ const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
   onClose,
   variant = "booking",
 }) => {
+  // Prevent background scroll when open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const content =
