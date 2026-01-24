@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${quicksand.variable} ${sandyKids.variable} font-quicksand antialiased`}
+        suppressHydrationWarning={true}
       >
         <Navbar />
         <main>{children}</main>
