@@ -61,6 +61,8 @@ const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
           </div>
         </div>
 
+        {/* Success Video (Cloudinary) - placed above contact info */}
+
         {/* Title */}
         <h2 className="text-2xl font-bold text-slate-900 mb-2 font-['Quicksand']">
           {content.title}
@@ -83,6 +85,17 @@ const SubmissionSuccess: React.FC<SubmissionSuccessProps> = ({
           </ul>
         </div>
 
+        <div className="mb-6 flex justify-center">
+          <video
+            src="https://res.cloudinary.com/ds2h3iwys/video/upload/v1769237633/Sandton%20Preparatory%20School%20Web%20Images/Message%20Successful%20video/0_Family_Parents_3840x2160_kvd7xj.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-48 h-48 object-cover rounded-md"
+            aria-label="Success animation"
+          />
+        </div>
         {/* Contact Info */}
         <div className="mb-6 text-xs text-slate-500 font-['Quicksand']">
           <p className="mb-1">If you have questions, reach out to us:</p>
