@@ -31,7 +31,7 @@ const Blogpage = () => {
 
       {/* Blog Featured Section */}
       {featuredBlog && (
-        <section className="flex justify-center px-4 sm:px-6">
+        <section className="flex justify-center px-4 sm:px-6 mt-12">
           <div className="max-w-4xl w-full bg-amber-300/5 rounded-3xl outline outline-1 outline-offset-[-1px] outline-amber-300/10 flex flex-col justify-start items-start gap-5 p-6 sm:p-8">
             {/* Badge */}
             <div className="flex items-center gap-2">
@@ -75,11 +75,11 @@ const Blogpage = () => {
       )}
 
       {/* Blog Cards Section */}
-      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+      <section className="py-16 sm:py-20 md:py-2 px-4 sm:px-6">
         <div>
           <SelectionBtn />
         </div>
-        <div className="w-full flex justify-center items-center px-4 py-10">
+        <div className="w-full flex justify-center items-center px-4 py-14">
           <div className="max-w-lg flex flex-col justify-start items-center gap-2 text-center">
             <div className="text-slate-700 text-2xl sm:text-3xl md:text-4xl font-bold font-['Quicksand'] leading-snug sm:leading-[44px] md:leading-[56px]">
               All Blog Posts

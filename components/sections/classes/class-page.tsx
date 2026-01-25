@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Classcards from "./class-cards";
 import SubFooter from "../about/sub-footer";
@@ -195,7 +196,13 @@ const Classpage = () => {
           {/* Cards wrapper */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             {/* Card 1 */}
-            <div className="px-6 py-5 bg-white rounded-lg shadow-md outline outline-1 outline-amber-300/20 flex flex-col gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="px-6 py-5 bg-white rounded-lg shadow-md outline outline-1 outline-amber-300/20 flex flex-col gap-3"
+            >
               <div className="text-slate-700 text-xl sm:text-2xl font-bold font-['Quicksand'] leading-snug">
                 All Classes by Section Optional
               </div>
@@ -217,10 +224,16 @@ const Classpage = () => {
                   Interest-based learning
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div className="px-6 py-5 bg-white rounded-lg shadow-md outline outline-1 outline-amber-300/20 flex flex-col gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="px-6 py-5 bg-white rounded-lg shadow-md outline outline-1 outline-amber-300/20 flex flex-col gap-3"
+            >
               <div className="text-slate-700 text-xl sm:text-2xl font-bold font-['Quicksand'] leading-snug">
                 Teacher&apos;s Name and Class Rating
               </div>
@@ -241,7 +254,7 @@ const Classpage = () => {
                   Interest-based learning
                 </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

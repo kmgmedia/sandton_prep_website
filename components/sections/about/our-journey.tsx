@@ -9,6 +9,8 @@ const timelineData = [
   { year: "2022", text: "Introduced forest school program", side: "right" },
   { year: "2023", text: "Opened second campus location", side: "left" },
   { year: "2024", text: "Celebrated 100+ happy families", side: "right" },
+  { year: "2025", text: "Launched innovative learning programs", side: "left" },
+  { year: "2026", text: "Recognized for community impact", side: "right" },
 ];
 
 export default function JourneyTimeline() {

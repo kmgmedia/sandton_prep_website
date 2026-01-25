@@ -83,7 +83,9 @@ export default function BlogArticlePage({
       </section>
 
       {/* Article Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <article
+        className={`max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16${slug === "importance-of-play-based-learning" ? " mt-12" : ""}`}
+      >
         <div
           className="article-content text-slate-700 font-['Quicksand'] text-lg leading-relaxed space-y-6"
           dangerouslySetInnerHTML={{ __html: article.content || "" }}
