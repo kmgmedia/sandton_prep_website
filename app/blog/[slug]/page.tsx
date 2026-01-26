@@ -82,7 +82,7 @@ export default function BlogArticlePage({
                 src={article.image}
                 alt={article.title}
                 className="object-cover w-full h-full"
-                style={{ maxHeight: '24rem' }}
+                style={{ maxHeight: "24rem" }}
               />
             </div>
           </div>
