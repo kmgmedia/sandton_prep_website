@@ -108,7 +108,7 @@ const Blogpage = () => {
         </div>
       </section>
 
-      <section className="flex justify-center items-center w-full py-16 pt-8">
+      <section className="flex justify-center items-center w-full py-36 pt-24">
         <div className="w-full max-w-5xl flex flex-col justify-center items-center gap-12">
           {/* Stay Updated Section */}
           <div className="w-full px-8 py-14 bg-yellow-300 flex flex-col justify-center items-center gap-8">

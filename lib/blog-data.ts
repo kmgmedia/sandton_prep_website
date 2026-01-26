@@ -6,6 +6,7 @@ export interface BlogArticle {
   description: string;
   author: string;
   date: string;
+  image?: string;
   content?: string;
   featured?: boolean;
 }
@@ -22,6 +23,7 @@ export const blogArticles: BlogArticle[] = [
       "Discover how play-based learning approaches foster creativity, social skills, and cognitive development in young children.",
     author: "Sarah Johnson",
     date: "March 15, 2024",
+    image: "/assets/blog/play-based-learning.jpg",
     featured: true,
     content: `
       <p>Play-based learning is a cornerstone of early childhood education, and for good reason. Research consistently shows that children learn best when they're actively engaged in hands-on, meaningful experiences. At Sandton Prep, we've witnessed firsthand how play transforms the learning journey for our youngest students.</p>
@@ -79,6 +81,7 @@ export const blogArticles: BlogArticle[] = [
       "Tips and strategies to help make the transition to school a positive experience for both children and parents.",
     author: "Emma Williams",
     date: "March 10, 2025",
+    image: "/assets/blog/preparing-toddler.jpg",
     content: `
       <p>The first day of school is a monumental milestone for both children and parents. Whether you're feeling excited, anxious, or a mixture of both, you're not alone. The good news is that thoughtful preparation can make all the difference in ensuring a smooth, positive transition for everyone involved.</p>
       
