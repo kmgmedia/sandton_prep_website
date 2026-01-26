@@ -11,7 +11,12 @@ interface BlogCardProps {
   author: string;
   date: string;
   slug: string;
+  image?: string;
 }
+
+// Default image URL for all cards
+const DEFAULT_BLOG_IMAGE =
+  "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767393254/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/blog-sub-daycare-supplies-checklist-2-6226231_rpd3ka.jpg";
 
 const BlogCard: React.FC<BlogCardProps> = ({
   category,
@@ -21,13 +26,18 @@ const BlogCard: React.FC<BlogCardProps> = ({
   author,
   date,
   slug,
+  image,
 }) => {
   return (
     <div className="p-2.5 bg-neutral-100 rounded-xl outline outline-[1.5px] outline-zinc-300 flex justify-center items-center">
       <div className="w-80 flex flex-col justify-start items-center gap-6">
-        {/* Top Placeholder (image/illustration area) */}
-        <div className="w-full h-48 bg-amber-300/10 rounded-t-lg flex justify-center items-center">
-          <div className="w-12 h-12 border-4 border-amber-300"></div>
+        {/* Top Image Area */}
+        <div className="w-full h-48 bg-amber-300/10 rounded-t-lg flex justify-center items-center overflow-hidden">
+          <img
+            src={image || DEFAULT_BLOG_IMAGE}
+            alt={title}
+            className="object-cover w-full h-full"
+          />
         </div>
 
         {/* Card Content */}

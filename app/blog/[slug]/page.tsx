@@ -73,14 +73,21 @@ export default function BlogArticlePage({
         </div>
       </section>
 
-      {/* Featured Image Placeholder */}
-      <section className="bg-amber-300/10 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="h-64 sm:h-96 flex items-center justify-center">
-            <div className="w-24 h-24 border-8 border-amber-300"></div>
+      {/* Featured Image */}
+      {article.image && (
+        <section className="bg-amber-300/10 border-b border-slate-200">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="h-64 sm:h-96 flex items-center justify-center overflow-hidden rounded-2xl">
+              <img
+                src={article.image}
+                alt={article.title}
+                className="object-cover w-full h-full"
+                style={{ maxHeight: '24rem' }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Article Content */}
       <article

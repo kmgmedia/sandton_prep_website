@@ -22,8 +22,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "Discover how play-based learning approaches foster creativity, social skills, and cognitive development in young children.",
     author: "Sarah Johnson",
-    date: "March 15, 2024",
-    image: "/assets/blog/play-based-learning.jpg",
+    date: "March 15, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png",
     featured: true,
     content: `
       <p>Play-based learning is a cornerstone of early childhood education, and for good reason. Research consistently shows that children learn best when they're actively engaged in hands-on, meaningful experiences. At Sandton Prep, we've witnessed firsthand how play transforms the learning journey for our youngest students.</p>
@@ -80,8 +81,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "Tips and strategies to help make the transition to school a positive experience for both children and parents.",
     author: "Emma Williams",
-    date: "March 10, 2025",
-    image: "/assets/blog/preparing-toddler.jpg",
+    date: "March 10, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1769469341/Sandton%20Preparatory%20School%20Web%20Images/Blog/ChatGPT_Image_Jan_27_2026_12_13_26_AM_ehhr5j.png",
     content: `
       <p>The first day of school is a monumental milestone for both children and parents. Whether you're feeling excited, anxious, or a mixture of both, you're not alone. The good news is that thoughtful preparation can make all the difference in ensuring a smooth, positive transition for everyone involved.</p>
       
@@ -164,7 +166,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "Learn why starting reading early can give your child lifelong learning advantages.",
     author: "Michael Chen",
-    date: "March 8, 2025",
+    date: "March 8, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1767394612/Sandton%20Preparatory%20School%20Web%20Images/Hero-page-images/ChatGPT_Image_Jan_2_2026_11_56_32_PM_eeipz9.png",
     content: `
       <p>Reading is the foundation of all learning, and establishing strong reading habits in early childhood creates advantages that ripple throughout a person's entire educational journey and beyond. The simple act of sharing books with young children has profound, lasting impacts on their cognitive development, academic success, and lifelong love of learning.</p>
       
@@ -238,7 +242,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "Practical strategies to nurture your child's creative thinking and imagination.",
     author: "Lisa Anderson",
-    date: "March 5, 2025",
+    date: "March 5, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1769469750/Sandton%20Preparatory%20School%20Web%20Images/Blog/Image_fx_20_dialcu.jpg",
     content: `
       <p>Creativity is far more than artistic talent – it's a fundamental cognitive ability that empowers children to solve problems, think innovatively, and adapt to new situations. In our rapidly changing world, creative thinking has become one of the most valuable skills we can nurture in young children.</p>
       
@@ -336,7 +342,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "Understanding the connection between what children eat and how they learn.",
     author: "Dr. Rebecca Martinez",
-    date: "March 1, 2025",
+    date: "March 1, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1769469919/Sandton%20Preparatory%20School%20Web%20Images/Blog/Image_fx_21_cuugm1.jpg",
     content: `
       <p>Good nutrition is absolutely essential for optimal brain development and learning capacity. The food children eat doesn't just fuel their bodies – it directly impacts their cognitive function, ability to focus, emotional regulation, and long-term academic success. Understanding this crucial connection empowers parents to make informed nutritional choices that support their child's learning journey.</p>
       
@@ -449,7 +457,9 @@ export const blogArticles: BlogArticle[] = [
     description:
       "How to help young children understand and manage their emotions effectively.",
     author: "James Thompson",
-    date: "February 25, 2025",
+    date: "February 25, 2026",
+    image:
+      "https://res.cloudinary.com/ds2h3iwys/image/upload/v1769470120/Sandton%20Preparatory%20School%20Web%20Images/Blog/Image_fx_22_hzu9md.jpg",
     content: `
       <p>Emotional intelligence – the ability to recognize, understand, and manage emotions – is just as important as cognitive development and academic skills. In fact, research consistently shows that children with high emotional intelligence are better equipped to handle life's challenges, build strong relationships, succeed academically, and maintain mental health throughout their lives.</p>
       

@@ -102,6 +102,7 @@ const Blogpage = () => {
                 author={blog.author}
                 date={blog.date}
                 slug={blog.slug}
+                image={blog.image}
               />
             ))}
           </div>
