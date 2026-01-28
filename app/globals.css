@@ -159,3 +159,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Responsive helper for gallery absolute images. Ensures images scale down on small screens but keeps their absolute positions and aspect ratios. */
+@media (max-width: 768px) {
+  .responsive-gallery-img {
+    transform: none !important;
+    transform-origin: unset !important;
+  }
+  .responsive-gallery-img > span,
+  .responsive-gallery-img > img {
+    max-width: 100vw !important;
+    max-height: 100vw !important;
+  }
+}
+@media (max-width: 480px) {
+  .responsive-gallery-img {
+    transform: none !important;
+    transform-origin: unset !important;
+  }
+  .responsive-gallery-img > span,
+  .responsive-gallery-img > img {
+    max-width: 100vw !important;
+    max-height: 100vw !important;
+  }
+}
