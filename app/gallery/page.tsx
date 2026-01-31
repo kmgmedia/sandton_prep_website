@@ -51,6 +51,7 @@ const images: GalleryImage[] = [
     style:
       "absolute top-[395.91px] left-[767.66px] w-[306.6px] h-[389.2px] flex justify-center items-center",
   },
+  
 ];
 
 export default function GalleryPage() {

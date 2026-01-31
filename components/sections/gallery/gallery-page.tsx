@@ -49,14 +49,20 @@ const GalleryPageSection: React.FC<GalleryProps> = ({ images }) => {
       </section>
       <div
         className="w-full flex justify-center items-center p-2.5 box-border pt-12"
-        style={{ marginLeft: "80px" }}
+        style={{ marginLeft: "2px" }}
       >
         <div className="self-stretch flex flex-col items-center">
-          <div className="h-[785.1px] relative" style={{ minWidth: 1200 }}>
+          {/* Desktop Gallery */}
+          <div
+            className="hidden md:flex h-[785.1px] relative min-w-[1200px] flex-col md:flex-row md:flex-wrap gap-6"
+            aria-hidden="true"
+          >
             {images.map((img, idx) => (
               <div
                 key={img.src + "-" + idx}
-                className={img.style}
+                className={
+                  img.style + " w-full flex justify-center md:w-auto mb-0"
+                }
                 style={{ zIndex: 10 + idx }}
                 onClick={() => setModalImg(img)}
                 role="button"
@@ -69,13 +75,13 @@ const GalleryPageSection: React.FC<GalleryProps> = ({ images }) => {
               >
                 <Image
                   src={img.src}
-                  className="h-full w-full max-w-full overflow-hidden max-h-full object-cover mx-auto cursor-pointer"
+                  className="w-full max-w-xs h-auto object-contain mx-auto cursor-pointer rounded-lg md:max-w-full md:h-full md:object-cover"
                   width={img.width}
                   height={img.height}
                   sizes="100vw"
                   alt={img.alt}
                 />
-                {/* Overlay for last two images */}
+                {/* Overlay for last two images - only show on desktop */}
                 {(idx === images.length - 2 || idx === images.length - 1) && (
                   <div className="absolute top-12 left-0 transform -translate-x-1/2 w-[232px] h-[109px] flex items-center justify-center z-20 pointer-events-none">
                     <Image
@@ -91,10 +97,107 @@ const GalleryPageSection: React.FC<GalleryProps> = ({ images }) => {
               </div>
             ))}
           </div>
+          {/* Mobile Gallery */}
+          <div
+            className="flex flex-col gap-6 w-full md:hidden"
+            aria-hidden="false"
+          >
+            {images.map((img, idx) => (
+              <div
+                key={img.src + "-mobile-" + idx}
+                className="w-full"
+                style={{ zIndex: 10 + idx }}
+                onClick={() => setModalImg(img)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") setModalImg(img);
+                }}
+                aria-label={img.alt}
+                title="Click to enlarge"
+              >
+                <Image
+                  src={img.src}
+                  className="w-full h-auto object-contain rounded-xl shadow-md"
+                  width={img.width}
+                  height={img.height}
+                  sizes="100vw"
+                  alt={img.alt}
+                />
+              </div>
+            ))}
+          </div>
+          {/* Desktop Gallery */}
+          <div className="hidden md:flex h-[785.1px] relative min-w-[1200px] flex-col gap-4 md:flex-row md:flex-wrap">
+            {images.map((img, idx) => (
+              <div
+                key={img.src + "-" + idx}
+                className={img.style + " w-full flex justify-center md:w-auto"}
+                style={{ zIndex: 10 + idx }}
+                onClick={() => setModalImg(img)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") setModalImg(img);
+                }}
+                aria-label={img.alt}
+                title="Click to enlarge"
+              >
+                <Image
+                  src={img.src}
+                  className="w-full max-w-xs h-auto object-contain mx-auto cursor-pointer rounded-lg md:max-w-full md:h-full md:object-cover"
+                  width={img.width}
+                  height={img.height}
+                  sizes="100vw"
+                  alt={img.alt}
+                />
+                {/* Overlay for last two images - only show on desktop */}
+                {(idx === images.length - 2 || idx === images.length - 1) && (
+                  <div className="absolute top-12 left-0 transform -translate-x-1/2 w-[232px] h-[109px] flex items-center justify-center z-20 pointer-events-none">
+                    <Image
+                      src="/assets/gallery-overlay.jpg"
+                      alt="Overlay Shape"
+                      width={172}
+                      height={95}
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          {/* Mobile Gallery */}
+          <div className="flex flex-col gap-4 w-full md:hidden">
+            {images.map((img, idx) => (
+              <div
+                key={img.src + "-mobile-" + idx}
+                className="w-full flex justify-center"
+                style={{ zIndex: 10 + idx }}
+                onClick={() => setModalImg(img)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") setModalImg(img);
+                }}
+                aria-label={img.alt}
+                title="Click to enlarge"
+              >
+                <Image
+                  src={img.src}
+                  className="w-full max-w-xs h-auto object-contain mx-auto cursor-pointer rounded-lg"
+                  width={img.width}
+                  height={img.height}
+                  sizes="100vw"
+                  alt={img.alt}
+                />
+              </div>
+            ))}
+          </div>
           {/* Modal for enlarged image */}
           {modalImg && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-2"
               onClick={() => setModalImg(null)}
               style={{ cursor: "zoom-out" }}
             >
