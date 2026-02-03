@@ -162,7 +162,10 @@ const Footer = () => {
 
       {/* Bottom section */}
       <div className="w-full max-w-[1200px] border-t border-gray-500 pt-4 flex flex-col md:flex-row flex-wrap justify-between items-center gap-4 text-neutral-100 text-xs font-medium font-['Quicksand']">
-        <span>© 2025 Sandton Preparatory School. All rights reserved.</span>
+        <span>
+          © 2025 Sandton Preparatory School. All rights reserved. Designed by
+          KmgMedia Design & Technologies Ltd.
+        </span>
         <div className="flex gap-6">
           {[
             { label: "Privacy Policy", href: "#" },
