@@ -1,43 +1,3 @@
-# 🚨 Scalability Analysis: 100X Traffic Impact
-
-## Executive Summary
-
-At **100X current traffic**, approximately **8-10 critical breaking points** will be triggered. The system was designed for ~100 form submissions/month but would face systematic failures at ~10,000/month.
-
-**Current State:**
-
-- ~100 submissions/month = ~3-4 per day
-- **100X Scale:** ~10,000 submissions/month = ~300-330 per day
-
----
-
-## 🔴 BREAKING POINTS (by severity)
-
-### **CRITICAL (Will Crash)**
-
-#### 1. **In-Memory Rate Limiting** ⚠️ SEVERITY: CRITICAL
-
-**Current Implementation:**
-
-```typescript
-const store: RateLimitStore = {}; // Stored in server memory
-```
-
-**What Breaks:**
-
-- In-memory store grows infinitely (one entry per unique IP)
-- At 100X traffic: 10,000+ new IPs per month
-- Memory leak: ~100 MB+ of RAM consumed
-- Server restart = data loss of rate limit state
-- Concurrent requests race condition (no locking)
-
-**Expected Failures:**
-
-- Memory exhaustion within 1-3 months
-- Server crashing with `OutOfMemory` errors
-- Rate limiting stops working entirely
-- Users can spam forms infinitely after server restart
-
 **Estimated Timeline to Failure:** 2-3 months
 
 ---
@@ -204,7 +164,7 @@ setInterval(
       if (store[key].resetTime < now) delete store[key];
     });
   },
-  10 * 60 * 1000
+  10 * 60 * 1000,
 );
 ```
 
@@ -346,7 +306,7 @@ setInterval(
       }
     });
   },
-  10 * 60 * 1000
+  10 * 60 * 1000,
 );
 
 // 100X IMPACT:

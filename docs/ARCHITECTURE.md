@@ -144,6 +144,7 @@
 ### Booking Form Submission
 
 ```
+
 (Similar flow to contact form, but with these differences:)
 
 - Endpoint: POST /api/booking

@@ -11,8 +11,6 @@ This guide will help you set up the production-ready backend for form submission
 ✅ **Server-Side Validation**: Email domain validation, input sanitization, XSS prevention  
 ✅ **Security**: Environment variables, CORS, input sanitization
 
----
-
 ## 📦 Step 1: Install Dependencies
 
 Dependencies have been added to `package.json`. Install them:
@@ -22,11 +20,6 @@ pnpm install
 ```
 
 This will install:
-
-- `@supabase/supabase-js` - Supabase database client
-- `resend` - Email service
-
----
 
 ## 🗄️ Step 2: Set Up Supabase Database
 
@@ -44,19 +37,12 @@ This will install:
 
 This creates:
 
-- `contact_submissions` table
-- `visit_bookings` table
-- Indexes for performance
-- Row Level Security (RLS) policies
-
 ### 2.3 Get Your Supabase Credentials
 
 1. Go to **Settings** → **API**
 2. Copy:
    - **Project URL** (e.g., `https://xxxxx.supabase.co`)
    - **Service Role Key** (secret key - keep this private!)
-
----
 
 ## 📧 Step 3: Set Up Resend Email Service
 
@@ -80,8 +66,6 @@ This creates:
 1. Go to **API Keys** in Resend dashboard
 2. Create a new API key
 3. Copy the key (starts with `re_`)
-
----
 
 ## 🔐 Step 4: Configure Environment Variables
 
@@ -116,10 +100,6 @@ RATE_LIMIT_WINDOW_MS=900000
 
 **Important Notes:**
 
-- `SCHOOL_EMAIL` is the "From" address for emails (must match your verified Resend domain)
-- `SCHOOL_ADMISSIONS_EMAIL` is where form submissions are sent
-- For testing, you can use `onboarding@resend.dev` as `SCHOOL_EMAIL`
-
 ### 4.3 Verify `.gitignore`
 
 Make sure `.env.local` is in `.gitignore` (it should be already):
@@ -128,8 +108,6 @@ Make sure `.env.local` is in `.gitignore` (it should be already):
 .env.local
 .env*.local
 ```
-
----
 
 ## 🚀 Step 5: Test Your Setup
 
@@ -147,11 +125,6 @@ pnpm dev
 
 **Expected Results:**
 
-- ✅ Data saved to Supabase `contact_submissions` table
-- ✅ Email sent to `SCHOOL_ADMISSIONS_EMAIL`
-- ✅ Auto-responder sent to user's email
-- ✅ Success modal shown
-
 ### 5.3 Test the Booking Form
 
 1. Go to [http://localhost:3000/bookpage](http://localhost:3000/bookpage)
@@ -160,11 +133,6 @@ pnpm dev
 
 **Expected Results:**
 
-- ✅ Data saved to Supabase `visit_bookings` table
-- ✅ Email sent to `SCHOOL_ADMISSIONS_EMAIL`
-- ✅ Auto-responder sent to user's email
-- ✅ Success modal shown
-
 ### 5.4 Test Rate Limiting
 
 1. Submit the same form 6 times rapidly
@@ -172,8 +140,6 @@ pnpm dev
    ```
    Too many requests. Please try again in a few minutes.
    ```
-
----
 
 ## 🔍 Troubleshooting
 
@@ -215,8 +181,6 @@ pnpm build
 
 This will catch any TypeScript issues before deployment.
 
----
-
 ## 📊 View Submissions in Supabase
 
 ### Method 1: Supabase Dashboard
@@ -231,24 +195,18 @@ This will catch any TypeScript issues before deployment.
 In the SQL Editor, run:
 
 ```sql
--- View all contact submissions
 SELECT * FROM contact_submissions ORDER BY created_at DESC;
 
--- View all visit bookings
 SELECT * FROM visit_bookings ORDER BY created_at DESC;
 
--- Count submissions by status
 SELECT status, COUNT(*) as count
 FROM contact_submissions
 GROUP BY status;
 
--- Get submissions from last 7 days
 SELECT * FROM visit_bookings
 WHERE created_at > NOW() - INTERVAL '7 days'
 ORDER BY created_at DESC;
 ```
-
----
 
 ## 🚢 Deploying to Production (Vercel)
 
@@ -281,15 +239,9 @@ Click **Deploy** and wait for deployment to complete.
 
 Visit your deployed site and test both forms.
 
----
-
 ## 📈 Scaling Considerations
 
 ### Current Setup (Good for < 10,000 requests/month)
-
-- ✅ Supabase free tier: 500MB database, 2GB bandwidth
-- ✅ Resend free tier: 100 emails/day (3,000/month)
-- ✅ In-memory rate limiting (resets on server restart)
 
 ### For Higher Traffic (> 10,000 requests/month)
 
@@ -298,8 +250,6 @@ Visit your deployed site and test both forms.
 3. **Use Redis for Rate Limiting** (Upstash free tier available)
 4. **Add Cloudflare** for DDoS protection
 5. **Monitor with Sentry** for error tracking
-
----
 
 ## 🛡️ Security Features Implemented
 
@@ -310,8 +260,6 @@ Visit your deployed site and test both forms.
 ✅ **Row Level Security**: Supabase RLS enabled on all tables  
 ✅ **Service Role**: Only server-side API can write to database  
 ✅ **HTTPS Only**: Production uses HTTPS (via Vercel)
-
----
 
 ## 📝 Files Created
 
@@ -332,8 +280,6 @@ app/api/
 .env.example                  # Environment variables template
 PRODUCTION_SETUP.md          # This file
 ```
-
----
 
 ## 🎓 For Junior Developers
 
@@ -368,15 +314,6 @@ Show success modal
 
 ### Key Concepts
 
-- **API Routes**: Server-side functions that handle form submissions
-- **Database**: Persistent storage for all submissions
-- **Email Service**: Transactional emails (Resend is like SendGrid/Mailgun)
-- **Rate Limiting**: Prevent spam by limiting requests per IP
-- **Environment Variables**: Keep secrets out of code
-- **Validation**: Check data on both client AND server
-
----
-
 ## 🆘 Need Help?
 
 1. Check browser console for errors (F12 → Console tab)
@@ -385,25 +322,10 @@ Show success modal
 4. Check Resend logs (Dashboard → Logs)
 5. Verify all environment variables are set correctly
 
----
-
 ## ✅ Next Steps (Future Enhancements)
 
 Priority 2 (Optional):
 
-- [ ] Admin dashboard to view submissions
-- [ ] Email notification when submission status changes
-- [ ] SMS notifications for urgent bookings
-- [ ] Calendar integration (Google Calendar API)
-- [ ] File upload support (CV/documents)
-
 Priority 3 (Nice to Have):
-
-- [ ] Export submissions to CSV/Excel
-- [ ] Analytics dashboard
-- [ ] Automated follow-up emails
-- [ ] CRM integration (HubSpot, Salesforce)
-
----
 
 **Questions?** Check the code comments in each file for detailed explanations.
