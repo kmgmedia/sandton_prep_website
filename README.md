@@ -1,47 +1,69 @@
-Sandton Preparatory School
-
-This project was built with Next.js
 , bootstrapped using create-next-app
 .
-
-🚀 Getting Started
-
-Run the development server:
-
 pnpm dev
-
-
-Then, open http://localhost:3000
- in your browser to see it live.
-
-To make changes, edit app/page.tsx. The page will auto-refresh as you update the file.
-
-🎨 Fonts & Styles
-
-Integrated next/font to automatically optimize and load Geist
+in your browser to see it live.
 , Vercel’s new font family.
+— full guide to features and APIs.
+— hands-on practice.
+— explore, contribute, or drop feedback.
 
-Added Sandy Kids font manually (since it’s not available on Google Fonts).
+# Sandton Preparatory School Website
 
-Included Quicksand in the font folder.
+## Project Architecture & Stack
 
-Updated globals.css inside the app folder for consistent styling.
+- **Framework:** Next.js (React, TypeScript)
+- **Database:** Supabase (PostgreSQL, RLS enforced)
+- **Email:** Resend (HTML templates, notifications, auto-responders)
+- **Styling:** Tailwind CSS, custom fonts (Geist, Sandy Kids, Quicksand)
+- **Hosting:** Vercel (HTTPS, CORS, edge functions)
+- **Rate Limiting:** In-memory (5 req/15min/IP), scalable to Redis
+- **Error Tracking:** Sentry (optional)
 
-📚 Learn More
+## Major Flows
 
-Next.js Documentation
- — full guide to features and APIs.
+### Contact & Booking Forms
 
-Interactive Next.js Tutorial
- — hands-on practice.
+- Client-side validation (lib/validation.ts)
+- API routes: [app/api/contact/route.ts](app/api/contact/route.ts), [app/api/booking/route.ts](app/api/booking/route.ts)
+- Rate limiting, input validation, DB insert, email notification, auto-responder
+- DB tables: `contact_submissions`, `visit_bookings` (see [supabase/schema.sql](supabase/schema.sql))
+- All inserts use UUIDs, timestamps, IP/user agent tracking, status fields
 
-Next.js GitHub Repository
- — explore, contribute, or drop feedback.
+### Email
 
-☁️ Deployment
+- Notifications and auto-responders use HTML templates ([lib/email.ts](lib/email.ts))
+- Reply-to set to user email
+
+### Security
+
+- HTTPS (Vercel)
+- CORS: Next.js same-origin
+- RLS on all DB tables
+- Secrets in `.env.local`, never in code
+
+### Error Handling
+
+- API routes return 429 (rate limit), 400 (validation), 500 (server error)
+
+## Developer Workflow
+
+- Start dev server: `pnpm dev`
+- Install dependencies: `pnpm install`
+- Environment setup: Copy `.env.example` to `.env.local` and fill in keys
+- Test: Submit forms, check modals, email delivery, logs
+- Deploy: Push to GitHub, deploy via Vercel, set env vars
+
+## References
+
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): Diagrams, flows, rationale
+- [docs/SCALABILITY_ANALYSIS.md](docs/SCALABILITY_ANALYSIS.md): Scaling strategies
+- [docs/PRODUCTION_SETUP.md](docs/PRODUCTION_SETUP.md): Setup & deployment
+- [lib/validation.ts](lib/validation.ts): Input validation rules
+- [app/api/contact/route.ts](app/api/contact/route.ts), [app/api/booking/route.ts](app/api/booking/route.ts): Backend logic
+  ☁️ Deployment
 
 The easiest way to deploy is with Vercel
 , the team behind Next.js.
 
 Check the deployment docs
- for more details.
+for more details.
